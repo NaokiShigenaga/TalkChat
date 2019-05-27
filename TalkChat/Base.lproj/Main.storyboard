@@ -28,6 +28,7 @@
                                 </state>
                                 <connections>
                                     <action selector="handleTalkChatButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pZ0-bX-7Tt"/>
+                                    <segue destination="HuT-tu-SX0" kind="show" id="c71-Eg-wtG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-Vu-6Dj">
@@ -121,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6u-1P-85F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="806"/>
+            <point key="canvasLocation" x="2217" y="134"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VC3-oj-ri5">
@@ -136,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfs-Ul-9M8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="1487"/>
+            <point key="canvasLocation" x="836" y="1563"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="Jm9-S8-Wos">
@@ -199,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7n-c6-MFE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="2163"/>
+            <point key="canvasLocation" x="137" y="2272"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="Lhp-3j-YpD">
@@ -214,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYx-6y-yA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="1487"/>
+            <point key="canvasLocation" x="1556" y="1563"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="mem-bp-tLh">
@@ -229,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUt-Gj-1In" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2217" y="806"/>
+            <point key="canvasLocation" x="1556" y="860"/>
         </scene>
         <!--Talk View Controller-->
         <scene sceneID="OEc-z6-MlL">
@@ -244,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4q-4P-5xq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="806"/>
+            <point key="canvasLocation" x="836" y="860"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="QkN-ya-yWG">

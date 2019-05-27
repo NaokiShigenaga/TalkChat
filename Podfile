@@ -11,5 +11,10 @@ target 'TalkChat' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'SVProgressHUD','2.2.5'
+  pod 'JSQMessagesViewController'
+  pod 'MessageKit'
+  pod 'MessageInputBar'
+  pod 'SCLAlertView'
+
 
 end

@@ -20,6 +20,7 @@
 		00382502229538110013116A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00382501229538110013116A /* CameraViewController.swift */; };
 		003825042295384F0013116A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003825032295384F0013116A /* SettingViewController.swift */; };
 		0038250622953FD00013116A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0038250522953FD00013116A /* GoogleService-Info.plist */; };
+		00C77FE4229B74A000EA082B /* Swift-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 00C77FE3229B74A000EA082B /* Swift-Logo.png */; };
 		A1904B03F6191E3979EFFE5F /* Pods_TalkChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBB91AECA4BE1E8C1C5C1B1 /* Pods_TalkChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		00382501229538110013116A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		003825032295384F0013116A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0038250522953FD00013116A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		00C77FE3229B74A000EA082B /* Swift-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swift-Logo.png"; sourceTree = "<group>"; };
 		2EBB91AECA4BE1E8C1C5C1B1 /* Pods_TalkChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TalkChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411588FED10D57EF737A4F39 /* Pods-TalkChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkChat.release.xcconfig"; path = "Target Support Files/Pods-TalkChat/Pods-TalkChat.release.xcconfig"; sourceTree = "<group>"; };
 		9F53AA8FF36C349EF9F0F5CD /* Pods-TalkChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkChat.debug.xcconfig"; path = "Target Support Files/Pods-TalkChat/Pods-TalkChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		00294A3F229534A900F73ADF /* TalkChat */ = {
 			isa = PBXGroup;
 			children = (
+				00C77FE3229B74A000EA082B /* Swift-Logo.png */,
 				00294A40229534A900F73ADF /* AppDelegate.swift */,
 				00294A42229534A900F73ADF /* ViewController.swift */,
 				00294A44229534A900F73ADF /* Main.storyboard */,
@@ -176,6 +179,7 @@
 				0038250622953FD00013116A /* GoogleService-Info.plist in Resources */,
 				00294A48229534AA00F73ADF /* Assets.xcassets in Resources */,
 				00294A46229534A900F73ADF /* Main.storyboard in Resources */,
+				00C77FE4229B74A000EA082B /* Swift-Logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +219,11 @@
 				"${PODS_ROOT}/Target Support Files/Pods-TalkChat/Pods-TalkChat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -225,6 +234,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
