@@ -23,9 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //メニューバーの設定
         // Override point for customization after application launch.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "Talk")
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "Home")
+        //let mainVC = storyboard.instantiateViewController(withIdentifier: "Talk")
         let leftVC = storyboard.instantiateViewController(withIdentifier: "Left")
-        let navigationController = UINavigationController(rootViewController: mainVC)
+        let navigationController = UINavigationController(rootViewController: homeVC)
         let slideMenuController = SlideMenuController(mainViewController: navigationController, leftMenuViewController: leftVC)
         
         self.window?.rootViewController = slideMenuController

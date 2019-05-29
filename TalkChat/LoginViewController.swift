@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import SVProgressHUD
+import SlideMenuControllerSwift
+
 
 class LoginViewController: UIViewController {
     
@@ -57,8 +59,14 @@ class LoginViewController: UIViewController {
                 //HUDを消す
                 SVProgressHUD.dismiss()
                 
-                //画面を閉じてViewControllerに戻る
-                self.dismiss(animated: true, completion: nil)
+//                //画面を閉じてホーム画面に遷移
+//                let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+//                self.present(ViewController!, animated: true, completion: nil)
+                
+                let slideMenuController = self.slideMenuController()
+                let navigationController = slideMenuController!.mainViewController as! UINavigationController
+                let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                navigationController.setViewControllers([ViewController!], animated: true)
             }
         }
     }
@@ -104,8 +112,14 @@ class LoginViewController: UIViewController {
                         //HUDを消す
                         SVProgressHUD.dismiss()
                         
-                        //画面を閉じてViewControllerに戻る
-                        self.dismiss(animated: true, completion: nil)
+//                        //画面を閉じてホーム画面へ遷移
+//                        let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+//                        self.present(ViewController!, animated: true, completion: nil)
+                        
+                        let slideMenuController = self.slideMenuController()
+                        let navigationController = slideMenuController!.mainViewController as! UINavigationController
+                        let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                        navigationController.setViewControllers([ViewController!], animated: true)
                     }
                 }
             }

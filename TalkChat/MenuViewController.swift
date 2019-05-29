@@ -6,12 +6,16 @@
 //  Copyright © 2019 naoki.shigenaga. All rights reserved.
 //
 
+import Firebase
+import FirebaseAuth
 import UIKit
+import SVProgressHUD
+import SlideMenuControllerSwift
 
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //メニュー
-    let fruits = ["招待", "QR読取", "招待コード", "ホーム", "ログアウト"]
+    let fruits = ["招待", "QR読取み", "招待コード", "ホーム", "ログアウト"]
     
     ///セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,6 +31,61 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.textLabel!.text = fruits[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //row=0が選択されたとき（招待）
+        if indexPath.section == 0 && indexPath.row == 0 {
+            print("「招待」が押されました")
+        }
+        
+        //row=1が選択されたとき（QR読取み）
+        if indexPath.section == 0 && indexPath.row == 1 {
+            print("「QR読込み」が押されました")
+        }
+        
+        //row=2が選択されたとき（招待コード）
+        if indexPath.section == 0 && indexPath.row == 2 {
+            print("「招待コード」が押されました")
+        }
+        
+//        //row=3が選択されたとき（ホーム）
+//        if indexPath.section == 0 && indexPath.row == 3 {
+//            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+//            self.present(ViewController!, animated: true, completion: nil)
+//            print("「ホーム」が押されました")
+//        }
+        
+        //row=3が選択されたとき（ホーム）
+        if indexPath.section == 0 && indexPath.row == 3 {
+            //let slideMenuController = self.slideMenuController as! SlideMenuController
+            let slideMenuController = self.slideMenuController()
+            let navigationController = slideMenuController!.mainViewController as! UINavigationController
+            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+            navigationController.setViewControllers([ViewController!], animated: true)
+            //メニューバーを閉じる
+            closeLeft()
+            print("「ホーム」が押されました")
+        }
+        
+        //row=4が選択されたとき（ログアウト）
+        if indexPath.section == 0 && indexPath.row == 4 {
+            // ログアウトする
+            try! Auth.auth().signOut()
+            
+            // ログイン画面を表示する
+//            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+//            self.present(loginViewController!, animated: true, completion: nil)
+            
+            let slideMenuController = self.slideMenuController()
+            let navigationController = slideMenuController!.mainViewController as! UINavigationController
+            let LoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            navigationController.setViewControllers([LoginViewController!], animated: true)
+            //メニューバーを閉じる
+            closeLeft()
+            
+            print("「ログアウト」が押されました")
+        }
     }
 
     override func viewDidLoad() {

@@ -41,8 +41,14 @@ class ViewController: UIViewController {
         ///currentUserがnilならログインしていない
         if Auth.auth().currentUser == nil {
             //ログインしていないときの処理
-            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-            self.present(loginViewController!, animated: true, completion: nil)
+//            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+//            self.present(loginViewController!, animated: true, completion: nil)
+            
+            let slideMenuController = self.slideMenuController()
+            let navigationController = slideMenuController!.mainViewController as! UINavigationController
+            let LoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            navigationController.setViewControllers([LoginViewController!], animated: true)
+            
         }
     }
     
@@ -52,7 +58,6 @@ class ViewController: UIViewController {
     
     //設定ボタン
     @IBAction func handleSettingButton(_ sender: Any) {
-        
     }
     
     //ログアウトボタン
@@ -61,11 +66,13 @@ class ViewController: UIViewController {
         try! Auth.auth().signOut()
         
         // ログイン画面を表示する
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-        self.present(loginViewController!, animated: true, completion: nil)
+//        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+//        self.present(loginViewController!, animated: true, completion: nil)？
+        let slideMenuController = self.slideMenuController()
+        let navigationController = slideMenuController!.mainViewController as! UINavigationController
+        let LoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+        navigationController.setViewControllers([LoginViewController!], animated: true)
     }
-    
-
 
 }
 
