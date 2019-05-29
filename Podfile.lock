@@ -66,17 +66,12 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - leveldb-library (1.20)
-  - MessageInputBar (0.4.1):
-    - MessageInputBar/Core (= 0.4.1)
-  - MessageInputBar/Core (0.4.1)
-  - MessageKit (2.0.0):
-    - MessageInputBar/Core
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - SCLAlertView (0.8)
+  - SlideMenuControllerSwift (3.0.2)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -85,9 +80,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - JSQMessagesViewController
-  - MessageInputBar
-  - MessageKit
-  - SCLAlertView
+  - SlideMenuControllerSwift (from `https://github.com/dekatotoro/SlideMenuControllerSwift`, branch `swift4`)
   - SVProgressHUD (= 2.2.5)
 
 SPEC REPOS:
@@ -105,11 +98,18 @@ SPEC REPOS:
     - JSQMessagesViewController
     - JSQSystemSoundPlayer
     - leveldb-library
-    - MessageInputBar
-    - MessageKit
     - nanopb
-    - SCLAlertView
     - SVProgressHUD
+
+EXTERNAL SOURCES:
+  SlideMenuControllerSwift:
+    :branch: swift4
+    :git: https://github.com/dekatotoro/SlideMenuControllerSwift
+
+CHECKOUT OPTIONS:
+  SlideMenuControllerSwift:
+    :commit: 88ed3c28b17fdbb194dfa8b2c8e37c742c0b78a7
+    :git: https://github.com/dekatotoro/SlideMenuControllerSwift
 
 SPEC CHECKSUMS:
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
@@ -125,12 +125,10 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
-  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SlideMenuControllerSwift: 9e8d2bba8ea9201c6207acb76e95a2841453ec9c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 6035ab6b629112fb1f866f19e8b0897076120b2d
+PODFILE CHECKSUM: 58f6afab22c438e58f41ae704e8e8b149f3c0f9f
 
 COCOAPODS: 1.6.1

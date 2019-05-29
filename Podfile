@@ -12,9 +12,7 @@ target 'TalkChat' do
   pod 'Firebase/Database'
   pod 'SVProgressHUD','2.2.5'
   pod 'JSQMessagesViewController'
-  pod 'MessageKit'
-  pod 'MessageInputBar'
-  pod 'SCLAlertView'
+  pod 'SlideMenuControllerSwift', :git => 'https://github.com/dekatotoro/SlideMenuControllerSwift', :branch => 'swift4'
 
 
 end

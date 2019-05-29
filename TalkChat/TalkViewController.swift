@@ -10,8 +10,14 @@ import UIKit
 import JSQMessagesViewController
 import Firebase
 import FirebaseAuth
+import SlideMenuControllerSwift 
 
 class TalkViewController: JSQMessagesViewController{
+    
+    //メニューバーの設定
+    @objc private func didTapLeftMenuIcon() {
+        self.slideMenuController()?.openLeft()
+    }
     
     // データベースへの参照を定義
     var ref: DatabaseReference!
@@ -80,6 +86,18 @@ class TalkViewController: JSQMessagesViewController{
         //メッセージデータの配列を初期化
         self.messages = []
         setupFirebase()
+        
+        
+        //メニューバー＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+        //NavigationBarが半透明かどうか
+        navigationController?.navigationBar.isTranslucent = false
+        //NavigationBarの色を変更します
+        navigationController?.navigationBar.barTintColor = UIColor(red: 129/255, green: 212/255, blue: 78/255, alpha: 1)
+        //NavigationBarに乗っている部品の色を変更します
+        navigationController?.navigationBar.tintColor = UIColor.white
+        //バーの左側にボタンを配置します(ライブラリ特有)
+        addLeftBarButtonWithImage(UIImage(named: "menu")!)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -159,4 +177,5 @@ class TalkViewController: JSQMessagesViewController{
             
         }
     }
+
 }
