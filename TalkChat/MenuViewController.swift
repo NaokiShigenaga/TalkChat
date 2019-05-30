@@ -15,7 +15,7 @@ import SlideMenuControllerSwift
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //メニュー
-    let fruits = ["招待", "QR読取み", "招待コード", "ホーム", "ログアウト"]
+    let fruits = ["招待QR", "QR読取み", "招待コード", "ホーム", "ログアウト"]
     
     ///セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,13 +34,21 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //row=0が選択されたとき（招待）
+        //row=0が選択されたとき（招待QR）
         if indexPath.section == 0 && indexPath.row == 0 {
-            print("「招待」が押されました")
+            print("「招待QR」が押されました")
         }
         
         //row=1が選択されたとき（QR読取み）
         if indexPath.section == 0 && indexPath.row == 1 {
+            
+            let slideMenuController = self.slideMenuController()
+            let navigationController = slideMenuController!.mainViewController as! UINavigationController
+            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Camera")
+            navigationController.setViewControllers([ViewController!], animated: true)
+            //メニューバーを閉じる
+            closeLeft()
+            
             print("「QR読込み」が押されました")
         }
         
@@ -49,16 +57,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("「招待コード」が押されました")
         }
         
-//        //row=3が選択されたとき（ホーム）
-//        if indexPath.section == 0 && indexPath.row == 3 {
-//            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-//            self.present(ViewController!, animated: true, completion: nil)
-//            print("「ホーム」が押されました")
-//        }
-        
         //row=3が選択されたとき（ホーム）
         if indexPath.section == 0 && indexPath.row == 3 {
-            //let slideMenuController = self.slideMenuController as! SlideMenuController
             let slideMenuController = self.slideMenuController()
             let navigationController = slideMenuController!.mainViewController as! UINavigationController
             let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
@@ -74,9 +74,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             try! Auth.auth().signOut()
             
             // ログイン画面を表示する
-//            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-//            self.present(loginViewController!, animated: true, completion: nil)
-            
             let slideMenuController = self.slideMenuController()
             let navigationController = slideMenuController!.mainViewController as! UINavigationController
             let LoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")

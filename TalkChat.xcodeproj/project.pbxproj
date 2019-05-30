@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00259D18229F84960007DCF6 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00259D17229F84960007DCF6 /* QrViewController.swift */; };
 		00294A41229534A900F73ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00294A40229534A900F73ADF /* AppDelegate.swift */; };
 		00294A43229534A900F73ADF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00294A42229534A900F73ADF /* ViewController.swift */; };
 		00294A46229534A900F73ADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00294A44229534A900F73ADF /* Main.storyboard */; };
@@ -15,7 +16,6 @@
 		003824F82295361D0013116A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003824F72295361D0013116A /* LoginViewController.swift */; };
 		003824FC229536F80013116A /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003824FB229536F80013116A /* TalkViewController.swift */; };
 		003824FE2295376E0013116A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003824FD2295376E0013116A /* MenuViewController.swift */; };
-		00382500229537CC0013116A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003824FF229537CC0013116A /* QRViewController.swift */; };
 		00382502229538110013116A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00382501229538110013116A /* CameraViewController.swift */; };
 		003825042295384F0013116A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003825032295384F0013116A /* SettingViewController.swift */; };
 		0038250622953FD00013116A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0038250522953FD00013116A /* GoogleService-Info.plist */; };
@@ -23,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00259D17229F84960007DCF6 /* QrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewController.swift; sourceTree = "<group>"; };
 		00294A3D229534A900F73ADF /* TalkChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalkChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00294A40229534A900F73ADF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00294A42229534A900F73ADF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +34,6 @@
 		003824F72295361D0013116A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		003824FB229536F80013116A /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		003824FD2295376E0013116A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		003824FF229537CC0013116A /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		00382501229538110013116A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		003825032295384F0013116A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0038250522953FD00013116A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -84,10 +84,10 @@
 				003824F72295361D0013116A /* LoginViewController.swift */,
 				003824FB229536F80013116A /* TalkViewController.swift */,
 				003824FD2295376E0013116A /* MenuViewController.swift */,
-				003824FF229537CC0013116A /* QRViewController.swift */,
 				00382501229538110013116A /* CameraViewController.swift */,
 				003825032295384F0013116A /* SettingViewController.swift */,
 				0038250522953FD00013116A /* GoogleService-Info.plist */,
+				00259D17229F84960007DCF6 /* QrViewController.swift */,
 			);
 			path = TalkChat;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 				003824F82295361D0013116A /* LoginViewController.swift in Sources */,
 				003824FE2295376E0013116A /* MenuViewController.swift in Sources */,
 				00294A43229534A900F73ADF /* ViewController.swift in Sources */,
-				00382500229537CC0013116A /* QRViewController.swift in Sources */,
+				00259D18229F84960007DCF6 /* QrViewController.swift in Sources */,
 				00294A41229534A900F73ADF /* AppDelegate.swift in Sources */,
 				003825042295384F0013116A /* SettingViewController.swift in Sources */,
 				00382502229538110013116A /* CameraViewController.swift in Sources */,

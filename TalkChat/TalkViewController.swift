@@ -32,9 +32,20 @@ class TalkViewController: JSQMessagesViewController{
     var outgoingAvatar: JSQMessagesAvatarImage!
     
     func setupFirebase() {
-        // DatabaseReferenceのインスタンス化
-        ref = Database.database().reference()
+//        // DatabaseReferenceのインスタンス化
+//        guard let userId = Auth.auth().currentUser?.uid else {
+//            //エラーメッセージ
+//            //ログインしてください。
+//            // ログイン画面に表示
+//            return
+//        }
         
+        ref = Database.database().reference().child("Talk").childByAutoId()
+        
+        print("ルームID：\(ref)")
+        
+        
+        //room_id: uid
         // 最新25件のデータをデータベースから取得する
         // 最新のデータが追加されるたびに最新データを取得する
         ref.queryLimited(toLast: 25).observe(DataEventType.childAdded, with: { (snapshot) -> Void in
@@ -70,10 +81,6 @@ class TalkViewController: JSQMessagesViewController{
             self.senderDisplayName = userName.displayName
         }
         
-        // 自分のsenderId, senderDisplayNameを設定
-        //self.senderId = "user1"
-        //self.senderDisplayName = "test"
-        
         // 吹き出しの設定
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         self.incomingBubble = bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
@@ -97,7 +104,7 @@ class TalkViewController: JSQMessagesViewController{
         navigationController?.navigationBar.tintColor = UIColor.white
         //バーの左側にボタンを配置します(ライブラリ特有)
         addLeftBarButtonWithImage(UIImage(named: "menu")!)
-        
+        //＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
     }
     
     override func didReceiveMemoryWarning() {

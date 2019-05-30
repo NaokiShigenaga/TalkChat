@@ -81,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="137" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Qr View Controller-->
         <scene sceneID="VC3-oj-ri5">
             <objects>
-                <viewController storyboardIdentifier="QR" id="ZyH-c3-zpR" customClass="QRViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Qr" id="ZyH-c3-zpR" customClass="QrViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tnq-SH-7Wl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

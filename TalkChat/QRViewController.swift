@@ -1,14 +1,14 @@
 //
-//  QRViewController.swift
+//  QrViewController.swift
 //  TalkChat
 //
-//  Created by 繁永 直希 on 2019/05/22.
+//  Created by 繁永 直希 on 2019/05/30.
 //  Copyright © 2019 naoki.shigenaga. All rights reserved.
 //
 
 import UIKit
 
-class QRViewController: UIViewController {
+class QrViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
