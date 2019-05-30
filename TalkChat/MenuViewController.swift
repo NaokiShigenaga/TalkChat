@@ -40,7 +40,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             //招待QR画面へ遷移
             let slideMenuController = self.slideMenuController()
             let navigationController = slideMenuController!.mainViewController as! UINavigationController
-            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Camera")
+            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Qr")
             navigationController.setViewControllers([ViewController!], animated: true)
             //メニューバーを閉じる
             closeLeft()
