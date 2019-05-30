@@ -36,12 +36,22 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //row=0が選択されたとき（招待QR）
         if indexPath.section == 0 && indexPath.row == 0 {
+            
+            //招待QR画面へ遷移
+            let slideMenuController = self.slideMenuController()
+            let navigationController = slideMenuController!.mainViewController as! UINavigationController
+            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Camera")
+            navigationController.setViewControllers([ViewController!], animated: true)
+            //メニューバーを閉じる
+            closeLeft()
+            
             print("「招待QR」が押されました")
         }
         
         //row=1が選択されたとき（QR読取み）
         if indexPath.section == 0 && indexPath.row == 1 {
             
+            //QR読込み画面へえ遷移
             let slideMenuController = self.slideMenuController()
             let navigationController = slideMenuController!.mainViewController as! UINavigationController
             let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Camera")
