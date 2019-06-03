@@ -16,7 +16,6 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var displayNameTextField: UITextField!
     
     @IBOutlet weak var ChangeButton: UIButton!
-    @IBOutlet weak var BackButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +24,13 @@ class SettingViewController: UIViewController {
         ChangeButton.backgroundColor = UIColor.lightGray
         ChangeButton.layer.cornerRadius = 5.0
         
-        //戻るボタンのカスタム
-        BackButton.backgroundColor = UIColor.lightGray
-        BackButton.layer.cornerRadius = 5.0
+        //ナビゲーションバー設定＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+        //NavigationBarが半透明かどうか
+        navigationController?.navigationBar.isTranslucent = false
+        //NavigationBarの色を変更します
+        navigationController?.navigationBar.barTintColor = UIColor(red: 129/255, green: 212/255, blue: 78/255, alpha: 1)
+        //NavigationBarに乗っている部品の色を変更します
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,11 +73,6 @@ class SettingViewController: UIViewController {
         }
         //キーボードを閉じる
         self.view.endEditing(true)
-    }
-    
-    //戻るボタン
-    @IBAction func backButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
 
 }

@@ -54,11 +54,19 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
         }
         
-        //ナビゲーションバー
+        
+        //ナビゲーションバー設定＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+        //NavigationBarが半透明かどうか
+        navigationController?.navigationBar.isTranslucent = false
+        //NavigationBarの色を変更します
+        navigationController?.navigationBar.barTintColor = UIColor(red: 129/255, green: 212/255, blue: 78/255, alpha: 1)
+        //NavigationBarに乗っている部品の色を変更します
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        //閉じる
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain , target: self, action: #selector(close))
         
-        
-        //OQコード用のメニューバー
+        //QRコード
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "QRコード", style: .plain, target: self, action: #selector(back))
         
     }
@@ -89,11 +97,13 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     //ナビゲーションバー （閉じる）
     @objc func close() {
+        //全てのモーダルを閉じる
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     //ナビゲーションバー （戻る）
     @objc func back() {
+        //今開いてる画面を閉じて1つ前の画面に戻る
         self.dismiss(animated: true, completion: nil)
     }
 

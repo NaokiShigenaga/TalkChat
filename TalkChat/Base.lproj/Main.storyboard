@@ -126,33 +126,17 @@
                                     <action selector="handleChangeButton:" destination="xti-OY-fj2" eventType="touchUpInside" id="cg5-cI-IaB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlc-GK-nNv">
-                                <rect key="frame" x="37.5" y="240" width="300" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="DsR-Dg-Lze"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="RU6-VJ-Sur"/>
-                                </constraints>
-                                <state key="normal" title="戻る">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButton:" destination="xti-OY-fj2" eventType="touchUpInside" id="9NY-Dv-Ftu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4Gl-bd-Vu8" firstAttribute="centerX" secondItem="zIT-rx-YBb" secondAttribute="centerX" id="KKl-cX-rYF"/>
                             <constraint firstItem="4Gl-bd-Vu8" firstAttribute="top" secondItem="FVp-6f-hjF" secondAttribute="top" constant="80" id="Q8l-YM-Q5d"/>
                             <constraint firstItem="NN6-IK-BQ9" firstAttribute="top" secondItem="4Gl-bd-Vu8" secondAttribute="bottom" constant="30" id="QED-J1-ZLV"/>
-                            <constraint firstItem="xlc-GK-nNv" firstAttribute="centerX" secondItem="zIT-rx-YBb" secondAttribute="centerX" id="QS0-UT-6xX"/>
-                            <constraint firstItem="xlc-GK-nNv" firstAttribute="top" secondItem="NN6-IK-BQ9" secondAttribute="bottom" constant="30" id="bit-x9-Fhq"/>
                             <constraint firstItem="NN6-IK-BQ9" firstAttribute="centerX" secondItem="zIT-rx-YBb" secondAttribute="centerX" id="ubk-Vp-GeX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FVp-6f-hjF"/>
                     </view>
                     <connections>
-                        <outlet property="BackButton" destination="xlc-GK-nNv" id="dD1-EW-Em3"/>
                         <outlet property="ChangeButton" destination="NN6-IK-BQ9" id="S5A-IL-ZU4"/>
                         <outlet property="displayNameTextField" destination="4Gl-bd-Vu8" id="7GQ-Ml-nhS"/>
                     </connections>
