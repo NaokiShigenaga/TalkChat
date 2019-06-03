@@ -19,6 +19,10 @@ class TalkViewController: JSQMessagesViewController{
         self.slideMenuController()?.openLeft()
     }
     
+    //var RoomId:String  = "-LgBsmK1LHOTpSA_YieC"
+    //var RoomId: String!
+    var RoomId:String = ""
+    
     // データベースへの参照を定義
     var ref: DatabaseReference!
     
@@ -32,18 +36,18 @@ class TalkViewController: JSQMessagesViewController{
     var outgoingAvatar: JSQMessagesAvatarImage!
     
     func setupFirebase() {
-//        // DatabaseReferenceのインスタンス化
-//        guard let userId = Auth.auth().currentUser?.uid else {
-//            //エラーメッセージ
-//            //ログインしてください。
-//            // ログイン画面に表示
-//            return
-//        }
-        
-        ref = Database.database().reference().child("Talk").childByAutoId()
+        // DatabaseReferenceのインスタンス化
+        if RoomId != "" {
+            ref = Database.database().reference().child("Talk").child(RoomId)
+            print("確認よう：\(RoomId)")
+        }else{
+            ref = Database.database().reference().child("Talk").childByAutoId()
+            print("確認よう：取得できてないよ！")
+        }
+        //ref = Database.database().reference().child("Talk").childByAutoId()
+        //ref = Database.database().reference().child("Talk").child(RoomId)
         
         print("ルームID：\(ref)")
-        
         
         //room_id: uid
         // 最新25件のデータをデータベースから取得する
@@ -94,7 +98,6 @@ class TalkViewController: JSQMessagesViewController{
         self.messages = []
         setupFirebase()
         
-        
         //メニューバー＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
         //NavigationBarが半透明かどうか
         navigationController?.navigationBar.isTranslucent = false
@@ -104,8 +107,22 @@ class TalkViewController: JSQMessagesViewController{
         navigationController?.navigationBar.tintColor = UIColor.white
         //バーの左側にボタンを配置します(ライブラリ特有)
         addLeftBarButtonWithImage(UIImage(named: "menu")!)
+        
+        //OQコード用のメニューバー
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "QR招待", style: .plain, target: self, action: #selector(showQRCode))
+        
         //＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
     }
+    
+    //QRコード呼び出し
+    @objc func showQRCode() {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Qr") as? QrViewController else { return }
+        //viewController.passedString = RoomId
+        viewController.passedString = ref.key!
+        print("ルーーーーーーーーーーーーーーームID：\(ref.key!)")
+        present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

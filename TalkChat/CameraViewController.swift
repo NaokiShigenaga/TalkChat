@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SlideMenuControllerSwift
 
 class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -52,6 +53,14 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 print("Error occured while creating video device input: \(error)")
             }
         }
+        
+        //ナビゲーションバー
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain , target: self, action: #selector(close))
+        
+        
+        //OQコード用のメニューバー
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "QRコード", style: .plain, target: self, action: #selector(back))
+        
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -66,9 +75,26 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 continue
             }
             
-            //ここでQRコードから取得したデータで何らかの処理を行う
-            //取得したデータは「metadata.stringValue」で使用できる
+            //ここでQRコードから取得したデータで処理を行う
+            //取得したデータは「metadata.stringValue」
+            guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Talk") as? TalkViewController else { return }
+            //viewController.passedString = RoomId
+            let dataID = metadata.stringValue!
+            viewController.RoomId = dataID
+            print("カメラViewでのID：\(dataID)")
+            present(UINavigationController(rootViewController: viewController), animated: true)
+        
         }
+    }
+    
+    //ナビゲーションバー （閉じる）
+    @objc func close() {
+        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    //ナビゲーションバー （戻る）
+    @objc func back() {
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

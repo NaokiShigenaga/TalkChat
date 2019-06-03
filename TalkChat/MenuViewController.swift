@@ -14,6 +14,9 @@ import SlideMenuControllerSwift
 
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var passedString: String!
+    var RoomId: String!
+    
     //メニュー
     let fruits = ["招待QR", "QR読取み", "招待コード", "ホーム", "ログアウト"]
     
@@ -40,8 +43,20 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             //招待QR画面へ遷移
             let slideMenuController = self.slideMenuController()
             let navigationController = slideMenuController!.mainViewController as! UINavigationController
-            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Qr")
-            navigationController.setViewControllers([ViewController!], animated: true)
+            let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Qr") as! QrViewController
+            
+          
+            
+            let roomId = Auth.auth().currentUser
+            if let roomId = roomId {
+                self.RoomId = roomId.uid
+            }
+            
+            //招待コードの送信
+            //ViewController.passedString = "passed String"
+            ViewController.passedString = RoomId
+            
+            navigationController.setViewControllers([ViewController], animated: true)
             //メニューバーを閉じる
             closeLeft()
             

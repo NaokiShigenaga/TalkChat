@@ -10,18 +10,30 @@ import UIKit
 
 class QrViewController: UIViewController {
 
+    @IBOutlet weak var qrCamera: UIButton!
+    
+    var passedString: String!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        //文字列をNSDataに変換し、QRコードを作成します。
-//        //Converts a string to NSData.
-//        let str = "トークチャットだよ！"
-//        let data = str.data(using: String.Encoding.utf8)!
+        if passedString != nil {
+            print("招待コード：\(passedString!)")
+        }
         
+        //文字列をNSDataに変換し、QRコードを作成します。
+        //Converts a string to NSData.
+        //let str = "-LgBsmK1LHOTpSA_YieC
+        let str = passedString!
+        let data = str.data(using: String.Encoding.utf8)!
+        
+        print("QRコード取得データ：\(str)")
+            
         //URLをNSDataに変換し、QRコードを作成します。
         //Converts; a url to NSData.
-        let url = "https://www.yahoo.co.jp/"
-        let data = url.data(using: String.Encoding.utf8)!
+        //let url = "https://www.yahoo.co.jp/"
+        //let data = url.data(using: String.Encoding.utf8)!
         
         //QRコードを生成します。
         //Generate QR code.
@@ -39,7 +51,25 @@ class QrViewController: UIViewController {
         qrImageView.frame = self.view.frame
         qrImageView.image = uiImage
         self.view.addSubview(qrImageView)
+        
+        //ナビゲーションバー
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain , target: self, action: #selector(close))
+        
+        
+        //OQコード用のメニューバー
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "QRカメラ", style: .plain, target: self, action: #selector(showCamera))
 
+    }
+    
+    //閉じる
+    @objc func close() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //QRコード呼び出し
+    @objc func showCamera() {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Camera") as? CameraViewController else { return }
+        present(UINavigationController(rootViewController: viewController), animated: true)
     }
 
 }
