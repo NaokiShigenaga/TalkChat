@@ -106,6 +106,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             print("「ログアウト」が押されました")
         }
+        
+        //テーブル選択後の選択色解除
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func viewDidLoad() {
