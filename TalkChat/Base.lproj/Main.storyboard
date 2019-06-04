@@ -88,9 +88,28 @@
                     <view key="view" contentMode="scaleToFill" id="tnq-SH-7Wl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTE-6h-NaO">
+                                <rect key="frame" x="37.5" y="587" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="e9d-u9-bmv"/>
+                                </constraints>
+                                <state key="normal" title="その他の招待"/>
+                                <connections>
+                                    <action selector="ShareButton:" destination="ZyH-c3-zpR" eventType="touchUpInside" id="zaU-o5-eN6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ULb-br-3dl" firstAttribute="bottom" secondItem="yTE-6h-NaO" secondAttribute="bottom" constant="50" id="6pu-7L-hTg"/>
+                            <constraint firstItem="yTE-6h-NaO" firstAttribute="centerX" secondItem="tnq-SH-7Wl" secondAttribute="centerX" id="vyc-jF-wvB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ULb-br-3dl"/>
                     </view>
+                    <connections>
+                        <outlet property="share" destination="yTE-6h-NaO" id="vRk-jR-1jD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfs-Ul-9M8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
