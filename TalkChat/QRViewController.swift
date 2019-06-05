@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class QrViewController: UIViewController {
 
-    @IBOutlet weak var qrCamera: UIButton!
+    @IBOutlet weak var qrImageView: UIImageView!
+    @IBOutlet weak var share: UIButton!
+    
     
     var passedString: String!
-    
+    var UserName:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +29,16 @@ class QrViewController: UIViewController {
         //文字列をNSDataに変換し、QRコードを作成します。
         //Converts a string to NSData.
         //let str = "-LgBsmK1LHOTpSA_YieC
-        let str = passedString!
-        let data = str.data(using: String.Encoding.utf8)!
-        
-        print("QRコード取得データ：\(str)")
+//        let str = passedString!
+//        let data = str.data(using: String.Encoding.utf8)!
+//
+//        print("QRコード取得データ：\(str)")
             
         //URLをNSDataに変換し、QRコードを作成します。
         //Converts; a url to NSData.
+        let url = "talk-chat://localhost:8080/roomid?" + passedString!
         //let url = "https://www.yahoo.co.jp/"
-        //let data = url.data(using: String.Encoding.utf8)!
+        let data = url.data(using: String.Encoding.utf8)!
         
         //QRコードを生成します。
         //Generate QR code.
@@ -45,12 +50,7 @@ class QrViewController: UIViewController {
         let uiImage = UIImage(cgImage: cgImage!)
         
         //作成したQRコードを表示します
-        //Display QR code
-        let qrImageView = UIImageView()
-        qrImageView.contentMode = .scaleAspectFit
-        qrImageView.frame = self.view.frame
         qrImageView.image = uiImage
-        self.view.addSubview(qrImageView)
         
         
         //ナビゲーションバー設定＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
@@ -78,6 +78,35 @@ class QrViewController: UIViewController {
     @objc func showCamera() {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Camera") as? CameraViewController else { return }
         present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+    
+    //その他の共有用ぶボタン
+    @IBAction func ShareButton(_ sender: Any) {
+
+        //ユーザ名
+        let userName = Auth.auth().currentUser
+        if let userName = userName {
+            UserName = userName.displayName!
+        }
+        let shareText = "\(UserName)さんからの招待が来ています。\n※Safariで開いてください。\n"
+        let shareWebsite = NSURL(string: "talk-chat://localhost:8080/roomid?" + passedString!)!
+        //let shareImage = UIImage(named: "")!
+        
+        //let activityItems = [shareText, shareWebsite, shareImage] as [Any]
+        let activityItems = [shareText, shareWebsite] as [Any]
+        
+        // 初期化処理
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        // 使用しないアクティビティタイプ
+        let excludedActivityTypes = [
+            UIActivity.ActivityType.saveToCameraRoll,
+        ]
+        
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        
+        // UIActivityViewControllerを表示
+        self.present(activityVC, animated: true, completion: nil)
     }
 
 }

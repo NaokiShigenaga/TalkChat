@@ -54,6 +54,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let navigationController = slideMenuController!.mainViewController as! UINavigationController
                 let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
                 navigationController.setViewControllers([ViewController!], animated: true)
+                
                 print("はいが押された")
             }
             

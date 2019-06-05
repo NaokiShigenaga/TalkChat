@@ -169,7 +169,6 @@ class TalkViewController: JSQMessagesViewController{
         return messages!.count
     }
     
-    
     //名前の表示
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString!
     {

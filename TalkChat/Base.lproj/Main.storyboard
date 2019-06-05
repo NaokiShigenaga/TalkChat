@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController storyboardIdentifier="Home" id="BYZ-38-t0r" customClass="ViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBb-zg-Oes">
-                                <rect key="frame" x="37.5" y="100" width="300" height="50"/>
+                                <rect key="frame" x="10" y="179" width="300" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="NVe-qp-SgN"/>
-                                    <constraint firstAttribute="height" constant="50" id="ann-q9-8tF"/>
+                                    <constraint firstAttribute="height" constant="50" id="GPJ-Bu-jyP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="vTf-rA-9rp"/>
                                 </constraints>
                                 <state key="normal" title="トークチャット">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,10 +33,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-Vu-6Dj">
-                                <rect key="frame" x="37.5" y="180" width="300" height="50"/>
+                                <rect key="frame" x="10" y="259" width="300" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9nc-kn-yKq"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Cca-Dp-cYL"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="SHs-Ho-vJy"/>
+                                    <constraint firstAttribute="height" constant="50" id="kz8-9y-zGw"/>
                                 </constraints>
                                 <state key="normal" title="設定">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,10 +47,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vw5-1a-7Q2">
-                                <rect key="frame" x="37.5" y="260" width="300" height="50"/>
+                                <rect key="frame" x="10" y="339" width="300" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="M8G-AG-Hsy"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Y5I-Oj-YcR"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="HiM-kj-dTh"/>
+                                    <constraint firstAttribute="height" constant="50" id="kwE-ei-UFH"/>
                                 </constraints>
                                 <state key="normal" title="ログアウト">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -62,12 +62,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vw5-1a-7Q2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sua-V1-pwI"/>
-                            <constraint firstItem="vw5-1a-7Q2" firstAttribute="top" secondItem="Jnb-Vu-6Dj" secondAttribute="bottom" constant="30" id="XwB-Ox-UA8"/>
-                            <constraint firstItem="Jnb-Vu-6Dj" firstAttribute="top" secondItem="qBb-zg-Oes" secondAttribute="bottom" constant="30" id="bHY-iS-6J4"/>
-                            <constraint firstItem="qBb-zg-Oes" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="cFU-26-TA3"/>
-                            <constraint firstItem="Jnb-Vu-6Dj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ecS-9r-vgl"/>
-                            <constraint firstItem="qBb-zg-Oes" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fRy-L7-cyH"/>
+                            <constraint firstItem="Jnb-Vu-6Dj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="G4e-z7-yQu"/>
+                            <constraint firstItem="vw5-1a-7Q2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Uti-t7-6Lj"/>
+                            <constraint firstItem="vw5-1a-7Q2" firstAttribute="top" secondItem="Jnb-Vu-6Dj" secondAttribute="bottom" constant="30" id="V8o-9H-aQI"/>
+                            <constraint firstItem="Jnb-Vu-6Dj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YsJ-xl-Mjg"/>
+                            <constraint firstItem="Jnb-Vu-6Dj" firstAttribute="top" secondItem="qBb-zg-Oes" secondAttribute="bottom" constant="30" id="fDu-A8-OHt"/>
+                            <constraint firstItem="qBb-zg-Oes" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xkU-vV-E1a"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -86,13 +86,20 @@
             <objects>
                 <viewController storyboardIdentifier="Qr" id="ZyH-c3-zpR" customClass="QrViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tnq-SH-7Wl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTE-6h-NaO">
-                                <rect key="frame" x="37.5" y="587" width="300" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Nx-uq-n86">
+                                <rect key="frame" x="60" y="184" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="e9d-u9-bmv"/>
+                                    <constraint firstAttribute="width" constant="200" id="Xca-B0-TqG"/>
+                                    <constraint firstAttribute="height" constant="200" id="gcM-nr-oLT"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTE-6h-NaO">
+                                <rect key="frame" x="10" y="394" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="9Kb-Ie-ZAk"/>
                                 </constraints>
                                 <state key="normal" title="その他の招待"/>
                                 <connections>
@@ -102,12 +109,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ULb-br-3dl" firstAttribute="bottom" secondItem="yTE-6h-NaO" secondAttribute="bottom" constant="50" id="6pu-7L-hTg"/>
-                            <constraint firstItem="yTE-6h-NaO" firstAttribute="centerX" secondItem="tnq-SH-7Wl" secondAttribute="centerX" id="vyc-jF-wvB"/>
+                            <constraint firstItem="0Nx-uq-n86" firstAttribute="centerY" secondItem="tnq-SH-7Wl" secondAttribute="centerY" id="9BH-PT-l4t"/>
+                            <constraint firstItem="yTE-6h-NaO" firstAttribute="centerX" secondItem="tnq-SH-7Wl" secondAttribute="centerX" id="F2p-qg-8pB"/>
+                            <constraint firstItem="yTE-6h-NaO" firstAttribute="top" secondItem="0Nx-uq-n86" secondAttribute="bottom" constant="10" id="NEb-4Y-T1d"/>
+                            <constraint firstItem="yTE-6h-NaO" firstAttribute="centerX" secondItem="tnq-SH-7Wl" secondAttribute="centerX" id="SNC-Ls-UIW"/>
+                            <constraint firstItem="0Nx-uq-n86" firstAttribute="centerX" secondItem="tnq-SH-7Wl" secondAttribute="centerX" id="us2-FK-SeI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ULb-br-3dl"/>
                     </view>
                     <connections>
+                        <outlet property="qrImageView" destination="0Nx-uq-n86" id="ob0-iM-loY"/>
                         <outlet property="share" destination="yTE-6h-NaO" id="vRk-jR-1jD"/>
                     </connections>
                 </viewController>
@@ -120,11 +131,11 @@
             <objects>
                 <viewController storyboardIdentifier="Setting" id="xti-OY-fj2" customClass="SettingViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zIT-rx-YBb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="表示名の変更" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Gl-bd-Vu8">
-                                <rect key="frame" x="37.5" y="100" width="300" height="30"/>
+                                <rect key="frame" x="10" y="100" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="t63-lU-2L2"/>
                                 </constraints>
@@ -133,7 +144,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NN6-IK-BQ9">
-                                <rect key="frame" x="37.5" y="160" width="300" height="50"/>
+                                <rect key="frame" x="10" y="160" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2eK-3G-cDO"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="B09-mq-LSr"/>
@@ -169,7 +180,7 @@
             <objects>
                 <viewController storyboardIdentifier="Camera" id="hHh-HB-mfV" customClass="CameraViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nVk-22-YbD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7Vh-oP-X91"/>
@@ -184,18 +195,18 @@
             <objects>
                 <viewController storyboardIdentifier="Left" id="Y4O-Fl-grI" customClass="MenuViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1sC-S1-t28">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jNY-po-1T4">
-                                <rect key="frame" x="0.0" y="117" width="325" height="550"/>
+                                <rect key="frame" x="0.0" y="117" width="270" height="451"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" id="y36-Bj-oiB">
-                                        <rect key="frame" x="0.0" y="28" width="325" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="270" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y36-Bj-oiB" id="9oZ-b0-3mn">
-                                            <rect key="frame" x="0.0" y="0.0" width="325" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="270" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -233,7 +244,7 @@
             <objects>
                 <viewController storyboardIdentifier="Talk" id="HuT-tu-SX0" customClass="TalkViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2R8-Oa-F4c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="HVD-Ag-a8Q"/>
@@ -248,11 +259,11 @@
             <objects>
                 <viewController storyboardIdentifier="Login" id="ZPf-Kh-d5l" customClass="LoginViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bjb-cG-PlG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CV4-A9-Fmy">
-                                <rect key="frame" x="37.5" y="100" width="300" height="30"/>
+                                <rect key="frame" x="10" y="100" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Jo7-su-eM9"/>
                                 </constraints>
@@ -261,7 +272,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IY0-8D-cBl">
-                                <rect key="frame" x="37.5" y="140" width="300" height="30"/>
+                                <rect key="frame" x="10" y="140" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="MLC-RM-Wq4"/>
                                 </constraints>
@@ -270,7 +281,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="アカウント作成時は表示名を入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ek-WF-SZC">
-                                <rect key="frame" x="37.5" y="180" width="300" height="30"/>
+                                <rect key="frame" x="10" y="180" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="QKB-ok-d2B"/>
                                 </constraints>
@@ -279,7 +290,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pac-8o-naF">
-                                <rect key="frame" x="37.5" y="220" width="300" height="50"/>
+                                <rect key="frame" x="10" y="220" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Bau-fa-2M8"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="GPa-Mv-JpD"/>
@@ -293,7 +304,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSt-eY-Vzn">
-                                <rect key="frame" x="37.5" y="280" width="300" height="50"/>
+                                <rect key="frame" x="10" y="280" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ILh-Xa-CiO"/>
                                     <constraint firstAttribute="height" constant="50" id="Q9d-h1-P0H"/>

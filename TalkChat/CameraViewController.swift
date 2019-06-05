@@ -82,15 +82,26 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             if metadata.stringValue == nil {
                 continue
             }
-            
+
             //ここでQRコードから取得したデータで処理を行う
             //取得したデータは「metadata.stringValue」
             guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Talk") as? TalkViewController else { return }
-            //viewController.passedString = RoomId
-            let dataID = metadata.stringValue!
+            
+            //let dataID = metadata.stringValue!
+            let urlID = metadata.stringValue!
+
+            //スキームURLからIDだけをの取得
+            //var separetedURL = urlID.components(separatedBy: CharacterSet(charactersIn: "?"))
+            let dataID = urlID.replacingCharacters(in: urlID.range(of:"talk-chat://localhost:8080/roomid?")!, with: "")
+            
+            //let dataID = separetedURL[1]
+            
+            print("(任意指定除外):\(dataID)")
+            
             viewController.RoomId = dataID
             print("カメラViewでのID：\(dataID)")
             present(UINavigationController(rootViewController: viewController), animated: true)
+         
         
         }
     }

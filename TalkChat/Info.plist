@@ -22,7 +22,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>jp.talk-chat.</string>
+			<string>jp.talk-chat.roomid</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>talk-chat</string>
