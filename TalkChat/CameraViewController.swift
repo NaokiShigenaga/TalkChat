@@ -91,17 +91,11 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             let urlID = metadata.stringValue!
 
             //スキームURLからIDだけをの取得
-            //var separetedURL = urlID.components(separatedBy: CharacterSet(charactersIn: "?"))
             let dataID = urlID.replacingCharacters(in: urlID.range(of:"talk-chat://localhost:8080/roomid?")!, with: "")
-            
-            //let dataID = separetedURL[1]
-            
-            print("(任意指定除外):\(dataID)")
-            
+        
             viewController.RoomId = dataID
             print("カメラViewでのID：\(dataID)")
             present(UINavigationController(rootViewController: viewController), animated: true)
-         
         
         }
     }

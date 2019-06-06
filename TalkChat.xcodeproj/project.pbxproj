@@ -19,6 +19,7 @@
 		00382502229538110013116A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00382501229538110013116A /* CameraViewController.swift */; };
 		003825042295384F0013116A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003825032295384F0013116A /* SettingViewController.swift */; };
 		0038250622953FD00013116A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0038250522953FD00013116A /* GoogleService-Info.plist */; };
+		004D256A22A8F4B400667D9E /* SpeechToText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004D256922A8F4B400667D9E /* SpeechToText.swift */; };
 		A1904B03F6191E3979EFFE5F /* Pods_TalkChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EBB91AECA4BE1E8C1C5C1B1 /* Pods_TalkChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		00382501229538110013116A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		003825032295384F0013116A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0038250522953FD00013116A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		004D256922A8F4B400667D9E /* SpeechToText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToText.swift; sourceTree = "<group>"; };
 		2EBB91AECA4BE1E8C1C5C1B1 /* Pods_TalkChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TalkChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411588FED10D57EF737A4F39 /* Pods-TalkChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkChat.release.xcconfig"; path = "Target Support Files/Pods-TalkChat/Pods-TalkChat.release.xcconfig"; sourceTree = "<group>"; };
 		9F53AA8FF36C349EF9F0F5CD /* Pods-TalkChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkChat.debug.xcconfig"; path = "Target Support Files/Pods-TalkChat/Pods-TalkChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				003825032295384F0013116A /* SettingViewController.swift */,
 				0038250522953FD00013116A /* GoogleService-Info.plist */,
 				00259D17229F84960007DCF6 /* QrViewController.swift */,
+				004D256922A8F4B400667D9E /* SpeechToText.swift */,
 			);
 			path = TalkChat;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				003824F82295361D0013116A /* LoginViewController.swift in Sources */,
 				003824FE2295376E0013116A /* MenuViewController.swift in Sources */,
 				00294A43229534A900F73ADF /* ViewController.swift in Sources */,
+				004D256A22A8F4B400667D9E /* SpeechToText.swift in Sources */,
 				00259D18229F84960007DCF6 /* QrViewController.swift in Sources */,
 				00294A41229534A900F73ADF /* AppDelegate.swift in Sources */,
 				003825042295384F0013116A /* SettingViewController.swift in Sources */,

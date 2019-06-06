@@ -200,5 +200,20 @@ class TalkViewController: JSQMessagesViewController{
             
         }
     }
+    
+    //音声認識呼び出し処理＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    func speechRecognition() {
+        let speech = SpeechToText()
+        speech.delegate = self
+        try? speech.start()
+    }
+    
+}
 
+extension TalkViewController: SpeechDelegate {
+    func speechEnd(text: String) {
+        print("音声結果：\(text)")
+        //自動投稿
+        
+    }
 }
