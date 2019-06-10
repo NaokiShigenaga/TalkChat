@@ -35,6 +35,8 @@ class TalkViewController: JSQMessagesViewController{
     var incomingAvatar: JSQMessagesAvatarImage!
     var outgoingAvatar: JSQMessagesAvatarImage!
     
+    let speechToText:SpeechToText! = nil
+    
     func setupFirebase() {
         // DatabaseReferenceのインスタンス化
         if RoomId != "" {
@@ -98,7 +100,7 @@ class TalkViewController: JSQMessagesViewController{
         self.messages = []
         setupFirebase()
         
-        //メニューバー＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+        //ナビゲーションバー＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
         //NavigationBarが半透明かどうか
         navigationController?.navigationBar.isTranslucent = false
         //NavigationBarの色を変更します
@@ -111,7 +113,12 @@ class TalkViewController: JSQMessagesViewController{
         //OQコード用のメニューバー
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "QR招待", style: .plain, target: self, action: #selector(showQRCode))
         
-        //＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+        //音声認識SWボタン
+        let speechbutton =  UIButton(type: .custom)
+        speechbutton.setImage(UIImage(named:"mike02"), for: .normal)
+        //UIButton(type: .infoDark)
+        inputToolbar!.contentView!.leftBarButtonItem = speechbutton
+        
     }
     
     //QRコード呼び出し
@@ -123,10 +130,14 @@ class TalkViewController: JSQMessagesViewController{
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //音声認識ボタン
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        speechRecognition()
     }
     
     // Sendボタンが押された時に呼ばれるメソッド
@@ -137,6 +148,7 @@ class TalkViewController: JSQMessagesViewController{
         
         //firebaseにデータを送信、保存する
         let post1 = ["from": senderId, "name": senderDisplayName, "text":text]
+        //let post1 = ["from": senderId, "name": "名無しの権兵衛", "text":"ああああああ"]
         let post1Ref = ref.childByAutoId()
         post1Ref.setValue(post1)
         self.finishSendingMessage(animated: true)
@@ -205,7 +217,7 @@ class TalkViewController: JSQMessagesViewController{
     func speechRecognition() {
         let speech = SpeechToText()
         speech.delegate = self
-        try? speech.start()
+        speech.start()
     }
     
 }
@@ -214,6 +226,19 @@ extension TalkViewController: SpeechDelegate {
     func speechEnd(text: String) {
         print("音声結果：\(text)")
         //自動投稿
+        if text != ""{
+            //let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
+            //self.messages?.append(message!)
+            //self.finishReceivingMessage(animated: true)
+            
+            //Firebaseに登録
+            let post1 = ["from": senderId!, "name": senderDisplayName, "text":text] as [String : Any]
+            let post1Ref = ref.childByAutoId()
+            post1Ref.setValue(post1)
+            self.finishSendingMessage(animated: true)
+        }else{
+            return
+        }
         
     }
 }

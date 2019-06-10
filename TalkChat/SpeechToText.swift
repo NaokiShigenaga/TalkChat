@@ -18,63 +18,62 @@ class SpeechToText {
     
     weak var delegate: SpeechDelegate?
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ja-JP"))!
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var speechRecognizer: SFSpeechRecognizer!
     private var recognitionTask: SFSpeechRecognitionTask?
-    private let audioEngine = AVAudioEngine()
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest!
+    private var audioEngine: AVAudioEngine!
+    var startCount = 0
+    
+    //override func viewDidLoad() {
+    //    super.viewDidLoad()
+        
+    //    SFSpeechRecognizer.requestAuthorization { _ in }
+    //}
+    
+    //override func viewDidAppear(_ animated: Bool) {
+    //    super.viewDidAppear(animated)
+        
+    //    start()
+    //}
     
     init() {
-        requestRecognizerAuthorization()
+        SFSpeechRecognizer.requestAuthorization { _ in }
     }
     
-    func requestRecognizerAuthorization() {
-        SFSpeechRecognizer.requestAuthorization { (authStatus) in
-        }
-    }
-    
-    func start() throws {
-        if let recognitionTask = recognitionTask {
-            recognitionTask.cancel()
-            self.recognitionTask = nil
-        }
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: [])
-        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        
-        let recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        self.recognitionRequest = recognitionRequest
-        recognitionRequest.shouldReportPartialResults = true
-        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] (result, error) in
-            guard let `self` = self else { return }
-            
-            var isFinal = false
-            
-            if let result = result {
-                self.delegate?.speechEnd(text: result.bestTranscription.formattedString)
-                print(result.bestTranscription.formattedString)
-                isFinal = result.isFinal
-            }
-            
-            if error != nil || isFinal {
-                self.audioEngine.stop()
-                self.audioEngine.inputNode.removeTap(onBus: 0)
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
-            }
-        }
+    func start() {
+        startCount += 1
+        print(startCount)
+        guard let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ja-JP")) else { return }
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        audioEngine = AVAudioEngine()
         
         let recordingFormat = audioEngine.inputNode.outputFormat(forBus: 0)
         audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            self.recognitionRequest?.append(buffer)
+            self.recognitionRequest.append(buffer)
+        }
+        do {
+            try audioEngine.start()
+        } catch {
+            // エラー処理
+            return
         }
         
-        audioEngine.prepare()
-        try? audioEngine.start()
-    }
-    
-    func stop() {
-        audioEngine.stop()
-        recognitionRequest?.endAudio()
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+            self.delegate?.speechEnd(text: result?.bestTranscription.formattedString ?? "")
+            print("resultHandler")
+            print(result?.bestTranscription.formattedString ?? "")
+            
+            if let error = error {
+                print("ERROR!")
+                print(error.localizedDescription)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+            self.recognitionTask?.cancel()
+            self.recognitionTask?.finish()
+            self.audioEngine.stop()
+            print("RESTART")
+            self.start()
+        })
     }
 }

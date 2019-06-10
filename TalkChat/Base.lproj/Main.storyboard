@@ -246,13 +246,23 @@
                     <view key="view" contentMode="scaleToFill" id="2R8-Oa-F4c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCE-mX-XbS">
+                                <rect key="frame" x="0.0" y="538" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="speechButton:" destination="HuT-tu-SX0" eventType="touchUpInside" id="RBe-ud-v4q"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="HVD-Ag-a8Q"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4q-4P-5xq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="859.52023988005999"/>
+            <point key="canvasLocation" x="834.375" y="858.80281690140851"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="QkN-ya-yWG">
