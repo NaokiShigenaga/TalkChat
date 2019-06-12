@@ -55,6 +55,7 @@ class SettingViewController: UIViewController {
             
             //表示名を設定する
             let user = Auth.auth().currentUser
+            print("userの中身：\(user!)")
             if let user = user {
                 let changeRequest = user.createProfileChangeRequest()
                 changeRequest.displayName = displayName

@@ -10,7 +10,8 @@ import UIKit
 import JSQMessagesViewController
 import Firebase
 import FirebaseAuth
-import SlideMenuControllerSwift 
+import SlideMenuControllerSwift
+import SVProgressHUD
 
 class TalkViewController: JSQMessagesViewController{
     
@@ -35,7 +36,13 @@ class TalkViewController: JSQMessagesViewController{
     var incomingAvatar: JSQMessagesAvatarImage!
     var outgoingAvatar: JSQMessagesAvatarImage!
     
-    let speechToText:SpeechToText! = nil
+    
+    
+    var speechToText:SpeechToText!
+    
+    
+    var onbutton: UIButton!
+    var offbutton: UIButton!
     
     func setupFirebase() {
         // DatabaseReferenceのインスタンス化
@@ -113,11 +120,17 @@ class TalkViewController: JSQMessagesViewController{
         //OQコード用のメニューバー
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "QR招待", style: .plain, target: self, action: #selector(showQRCode))
         
-        //音声認識SWボタン
-        let speechbutton =  UIButton(type: .custom)
-        speechbutton.setImage(UIImage(named:"mike02"), for: .normal)
+        //        //音声認識SWボタン(ON)
+        //        onbutton =  UIButton(type: .custom)
+        //        onbutton.setImage(UIImage(named:"mike0"), for: .normal)
+        //        //UIButton(type: .infoDark)
+        //        inputToolbar!.contentView!.leftBarButtonItem = onbutton
+        
+        //音声認識SWボタン(OFF)
+        offbutton =  UIButton(type: .custom)
+        offbutton.setImage(UIImage(named:"mike02"), for: .normal)
         //UIButton(type: .infoDark)
-        inputToolbar!.contentView!.leftBarButtonItem = speechbutton
+        inputToolbar!.contentView!.leftBarButtonItem = offbutton
         
     }
     
@@ -137,7 +150,23 @@ class TalkViewController: JSQMessagesViewController{
     
     //音声認識ボタン
     override func didPressAccessoryButton(_ sender: UIButton!) {
-        speechRecognition()
+        
+        if inputToolbar!.contentView!.leftBarButtonItem == offbutton{
+            speechRecognition()
+            //音声認識SWボタン(ON)
+            onbutton =  UIButton(type: .custom)
+            onbutton.setImage(UIImage(named:"mike01"), for: .normal)
+            //UIButton(type: .infoDark)
+            inputToolbar!.contentView!.leftBarButtonItem = onbutton
+        }else{
+            speechStop()
+            //音声認識SWボタン(OFF)
+            offbutton =  UIButton(type: .custom)
+            offbutton.setImage(UIImage(named:"mike02"), for: .normal)
+            //UIButton(type: .infoDark)
+            inputToolbar!.contentView!.leftBarButtonItem = offbutton
+            return
+        }
     }
     
     // Sendボタンが押された時に呼ばれるメソッド
@@ -213,11 +242,45 @@ class TalkViewController: JSQMessagesViewController{
         }
     }
     
+    //タップイベント（発言者の更新処理）
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+
+        print("タップされたよ！")
+
+        let message = messages?[indexPath.item]
+
+        //アラート表示
+        let alert = UIAlertController(title: "発言内容の更新", message: "", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { (textField:UITextField) -> Void in
+            textField.text = message!.text
+        })
+        alert.addAction(UIAlertAction(title: "更新", style: .default, handler: { (action:UIAlertAction) -> Void in
+
+            let textField = alert.textFields![0] as UITextField
+            print("Text field: \(textField.text)")
+
+        }))
+        alert.addAction(UIAlertAction(title: "削除", style: .default, handler: { (action:UIAlertAction) -> Void in
+            print("Text field: 削除")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction) -> Void in
+            print("Text field: cancel")
+        }))
+        self.present(alert, animated: true, completion: nil)
+
+    }
+    
+    
     //音声認識呼び出し処理＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
     func speechRecognition() {
-        let speech = SpeechToText()
-        speech.delegate = self
-        speech.start()
+        speechToText = SpeechToText()
+        speechToText.delegate = self
+        speechToText.start()
+    }
+    
+    //音声認識呼び出し処理（STOP）
+    func speechStop() {
+        speechToText?.stop()
     }
     
 }
@@ -227,10 +290,6 @@ extension TalkViewController: SpeechDelegate {
         print("音声結果：\(text)")
         //自動投稿
         if text != ""{
-            //let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
-            //self.messages?.append(message!)
-            //self.finishReceivingMessage(animated: true)
-            
             //Firebaseに登録
             let post1 = ["from": senderId!, "name": senderDisplayName, "text":text] as [String : Any]
             let post1Ref = ref.childByAutoId()

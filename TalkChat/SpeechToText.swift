@@ -24,17 +24,6 @@ class SpeechToText {
     private var audioEngine: AVAudioEngine!
     var startCount = 0
     
-    //override func viewDidLoad() {
-    //    super.viewDidLoad()
-        
-    //    SFSpeechRecognizer.requestAuthorization { _ in }
-    //}
-    
-    //override func viewDidAppear(_ animated: Bool) {
-    //    super.viewDidAppear(animated)
-        
-    //    start()
-    //}
     
     init() {
         SFSpeechRecognizer.requestAuthorization { _ in }
@@ -58,22 +47,31 @@ class SpeechToText {
             return
         }
         
+        
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+            //self.stop()
             self.delegate?.speechEnd(text: result?.bestTranscription.formattedString ?? "")
             print("resultHandler")
             print(result?.bestTranscription.formattedString ?? "")
+            
             
             if let error = error {
                 print("ERROR!")
                 print(error.localizedDescription)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-            self.recognitionTask?.cancel()
-            self.recognitionTask?.finish()
-            self.audioEngine.stop()
-            print("RESTART")
-            self.start()
-        })
+        
+                DispatchQueue.main.asyncAfter(deadline: .now() + 59.0, execute: {
+                    self.recognitionTask?.cancel()
+                    self.recognitionTask?.finish()
+                    self.audioEngine.stop()
+                    print("RESTART")
+                    self.start()
+                })
+    }
+    
+    func stop(){
+        self.audioEngine?.stop()
+        print("停止ボタンが押されました！")
     }
 }
