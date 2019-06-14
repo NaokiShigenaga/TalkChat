@@ -29,6 +29,7 @@ class SpeechToText {
         SFSpeechRecognizer.requestAuthorization { _ in }
     }
     
+    
     func start() {
         startCount += 1
         print(startCount)
@@ -84,7 +85,7 @@ class SpeechToText {
         }
     }
     
-    func restart() {
+    private func restart() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
             self.recognitionTask?.cancel()
             self.recognitionTask?.finish()

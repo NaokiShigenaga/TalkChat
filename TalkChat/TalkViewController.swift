@@ -248,7 +248,11 @@ class TalkViewController: JSQMessagesViewController{
         print("タップされたよ！")
 
         let message = messages?[indexPath.item]
-
+        
+        print("SENDID；\(message!.senderId)")
+        print("Text；\(message!.text)")
+        print("RoomId；\(ref.key!)")
+        
         //アラート表示
         let alert = UIAlertController(title: "発言内容の更新", message: "", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { (textField:UITextField) -> Void in
@@ -258,6 +262,16 @@ class TalkViewController: JSQMessagesViewController{
 
             let textField = alert.textFields![0] as UITextField
             print("Text field: \(textField.text)")
+            
+            
+
+            //更新処理
+            let post1 = ["from": message!.senderId, "name": message!.senderDisplayName, "text":textField] as [String : Any]
+            let post1Ref = self.ref.child(self.ref.key!)
+            post1Ref.updateChildValues(post1)
+            self.finishSendingMessage(animated: true)
+
+            
 
         }))
         alert.addAction(UIAlertAction(title: "削除", style: .default, handler: { (action:UIAlertAction) -> Void in
