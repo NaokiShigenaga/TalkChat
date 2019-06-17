@@ -13,6 +13,10 @@ import FirebaseAuth
 import SlideMenuControllerSwift
 import SVProgressHUD
 
+@objc protocol MenuDelegate: AnyObject {
+    func menuEnd(text: String)
+}
+
 class TalkViewController: JSQMessagesViewController{
     
     //メニューバーの設定
@@ -20,8 +24,8 @@ class TalkViewController: JSQMessagesViewController{
         self.slideMenuController()?.openLeft()
     }
     
+    //ルームID
     //var RoomId:String  = "-LgBsmK1LHOTpSA_YieC"
-    //var RoomId: String!
     var RoomId:String = ""
     
     // データベースへの参照を定義
@@ -29,13 +33,14 @@ class TalkViewController: JSQMessagesViewController{
     
     // メッセージ内容に関するプロパティ
     var messages: [JSQMessage]?
+    var snapshotKeys: [String]?
+    
     // 背景画像に関するプロパティ
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
     // アバター画像に関するプロパティ
     var incomingAvatar: JSQMessagesAvatarImage!
     var outgoingAvatar: JSQMessagesAvatarImage!
-    
     
     
     var speechToText:SpeechToText!
@@ -58,6 +63,7 @@ class TalkViewController: JSQMessagesViewController{
         
         print("ルームID：\(ref)")
         
+        snapshotKeys = []
         //room_id: uid
         // 最新25件のデータをデータベースから取得する
         // 最新のデータが追加されるたびに最新データを取得する
@@ -68,8 +74,48 @@ class TalkViewController: JSQMessagesViewController{
             let name = snapshotValue["name"] as! String
             print(snapshot.value!)
             let message = JSQMessage(senderId: sender, displayName: name, text: text)
+            
             self.messages?.append(message!)
+            self.snapshotKeys?.append(snapshot.key)
             self.finishSendingMessage()
+        })
+        
+        ref.queryLimited(toLast: 25).observe(DataEventType.childChanged, with: { (snapshot) -> Void in
+            //編集
+            guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
+            
+            
+            // 差し替えるため一度削除する
+            self.snapshotKeys?.remove(at: index)
+            self.messages?.remove(at: index)
+            
+            let snapshotValue = snapshot.value as! NSDictionary
+            let text = snapshotValue["text"] as! String
+            let sender = snapshotValue["from"] as! String
+            let name = snapshotValue["name"] as! String
+            print(snapshot.value!)
+            let message = JSQMessage(senderId: sender, displayName: name, text: text)
+            // 削除したところに更新済みのデータを追加する
+            self.snapshotKeys?.insert(snapshot.key, at: index)
+            self.messages?.insert(message!, at: index)
+            
+            // collectionViewを再表示する
+            self.finishSendingMessage()
+            //self.collectionView.reloadData()
+        })
+        
+        
+        ref.queryLimited(toLast: 25).observe(DataEventType.childRemoved, with: { (snapshot) -> Void in
+            //削除
+            guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
+            
+            // 削除する
+            self.snapshotKeys?.remove(at: index)
+            self.messages?.remove(at: index)
+            
+            //リロード
+            self.finishSendingMessage()
+
         })
     }
     
@@ -77,11 +123,14 @@ class TalkViewController: JSQMessagesViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         // クリーンアップツールバーの設定
         inputToolbar!.contentView!.leftBarButtonItem = nil
         // 新しいメッセージを受信するたびに下にスクロールする
         automaticallyScrollsToMostRecentMessage = true
         
+        //self.canPerformAction(<#T##action: Selector##Selector#>, withSender: <#T##Any?#>)
+        //inputToolbar!.contentView!.textView.c
         // 自分のsenderId, senderDisplayNameを設定
         //ユーザID
         let userId = Auth.auth().currentUser
@@ -177,13 +226,13 @@ class TalkViewController: JSQMessagesViewController{
         
         //firebaseにデータを送信、保存する
         let post1 = ["from": senderId, "name": senderDisplayName, "text":text]
-        //let post1 = ["from": senderId, "name": "名無しの権兵衛", "text":"ああああああ"]
         let post1Ref = ref.childByAutoId()
         post1Ref.setValue(post1)
+        
         self.finishSendingMessage(animated: true)
         
         //キーボードを閉じる
-        self.view.endEditing(true)
+        //self.view.endEditing(true)
     }
     
     // アイテムごとに参照するメッセージデータを返す
@@ -242,49 +291,98 @@ class TalkViewController: JSQMessagesViewController{
         }
     }
     
+    //タップイベント挙動対策
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+        cell.textView.isUserInteractionEnabled = false
+        return cell
+    }
+    
     //タップイベント（発言者の更新処理）
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-
+        
         print("タップされたよ！")
-
+        
         let message = messages?[indexPath.item]
         
-        print("SENDID；\(message!.senderId)")
-        print("Text；\(message!.text)")
-        print("RoomId；\(ref.key!)")
+        //更新用
+        func updateValue(text: String) {
+            guard let key = snapshotKeys?[indexPath.item] else { return }
+            
+            let post1 = ["from": message!.senderId, "name": message!.senderDisplayName, "text": text] as [String: String]
+            
+            let post1Ref = ref.child(key)
+            post1Ref.updateChildValues(post1)
+            self.finishSendingMessage(animated: true)
+        }
+        
+        //削除用
+        func removeValue() {
+            
+            guard let key = snapshotKeys?[indexPath.item] else { return }
+            let post1Ref = ref.child(key)
+            post1Ref.removeValue()
+            self.finishSendingMessage(animated: true)
+        }
         
         //アラート表示
         let alert = UIAlertController(title: "発言内容の更新", message: "", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { (textField:UITextField) -> Void in
             textField.text = message!.text
         })
+        
+        //更新メニュー
         alert.addAction(UIAlertAction(title: "更新", style: .default, handler: { (action:UIAlertAction) -> Void in
-
+            
             let textField = alert.textFields![0] as UITextField
             print("Text field: \(textField.text)")
+            updateValue(text: textField.text!)
             
-            
-
-            //更新処理
-            let post1 = ["from": message!.senderId, "name": message!.senderDisplayName, "text":textField] as [String : Any]
-            let post1Ref = self.ref.child(self.ref.key!)
-            post1Ref.updateChildValues(post1)
-            self.finishSendingMessage(animated: true)
-
-            
-
+            //キーボードを閉じる
+            self.view.endEditing(true)
         }))
+        
+        //削除メニュー
         alert.addAction(UIAlertAction(title: "削除", style: .default, handler: { (action:UIAlertAction) -> Void in
-            print("Text field: 削除")
+            
+            
+            //アラート表示
+            let alertController = UIAlertController(title: "本当に削除しますか？", message: "", preferredStyle: .alert)
+            let action1 = UIAlertAction(title: "はい", style: .default) { (action:UIAlertAction) in
+                
+                print("Text field: 削除")
+                removeValue()
+                
+                print("はいが押された")
+            }
+            
+            let action2 = UIAlertAction(title: "いいえ", style: .default) { (action:UIAlertAction) in
+                print("いいえが押された")
+                return
+            }
+            
+            alertController.addAction(action1)
+            alertController.addAction(action2)
+            self.present(alertController, animated: true, completion: nil)
+            
+            
         }))
+        
+        //キャンセルメニュー
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action:UIAlertAction) -> Void in
             print("Text field: cancel")
         }))
         self.present(alert, animated: true, completion: nil)
-
+        
     }
     
+    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+        print("performAction")
+    }
     
+    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return false
+    }
     //音声認識呼び出し処理＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
     func speechRecognition() {
         speechToText = SpeechToText()
@@ -304,11 +402,13 @@ extension TalkViewController: SpeechDelegate {
         print("音声結果：\(text)")
         //自動投稿
         if text != ""{
+            
+            inputToolbar.contentView.textView.text = text
             //Firebaseに登録
-            let post1 = ["from": senderId!, "name": senderDisplayName, "text":text] as [String : Any]
-            let post1Ref = ref.childByAutoId()
-            post1Ref.setValue(post1)
-            self.finishSendingMessage(animated: true)
+            /* let post1 = ["from": senderId!, "name": senderDisplayName, "text":text] as [String : Any]
+             let post1Ref = ref.childByAutoId()
+             post1Ref.setValue(post1)
+             self.finishSendingMessage(animated: true)*/
         }else{
             return
         }

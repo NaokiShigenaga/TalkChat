@@ -17,8 +17,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     var passedString: String!
     var RoomId: String!
     
+    var TalkViewController:TalkViewController!
+    weak var delegate: MenuDelegate?
+    
     //メニュー
-    let fruits = ["招待コード", "退室", "ログアウト"]
+    let fruits = ["閲覧モード", "退室", "ログアウト"]
     
     ///セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,10 +40,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //row=0が選択されたとき（招待コード）
+        //row=0が選択されたとき（閲覧モード）
         if indexPath.section == 0 && indexPath.row == 0 {
-            
-            print("「招待コード」が押されました")
+            print("「閲覧モード」が押されました")
         }
         
         //row=1が選択されたとき（退室）
@@ -117,5 +119,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
     }
+    
+//    func TalkRoom(){
+//        TalkViewController = TalkViewController()
+//    }
 
 }
+
+//extension MenuViewController: MenuDelegate {
+//    func menuEnd(text: String) {
+//    }
+//}
