@@ -49,6 +49,7 @@ class TalkViewController: JSQMessagesViewController{
     var onbutton: UIButton!
     var offbutton: UIButton!
     
+    
     func setupFirebase() {
         // DatabaseReferenceのインスタンス化
         if RoomId != "" {
@@ -309,11 +310,18 @@ class TalkViewController: JSQMessagesViewController{
         func updateValue(text: String) {
             guard let key = snapshotKeys?[indexPath.item] else { return }
             
+            if text.isEmpty {
+                SVProgressHUD.showError(withStatus: "発言内容が空です")
+                return
+            }else{
+            
             let post1 = ["from": message!.senderId, "name": message!.senderDisplayName, "text": text] as [String: String]
             
             let post1Ref = ref.child(key)
             post1Ref.updateChildValues(post1)
             self.finishSendingMessage(animated: true)
+            SVProgressHUD.showSuccess(withStatus: "発言内容を更新しました")
+            }
         }
         
         //削除用
@@ -323,6 +331,7 @@ class TalkViewController: JSQMessagesViewController{
             let post1Ref = ref.child(key)
             post1Ref.removeValue()
             self.finishSendingMessage(animated: true)
+            SVProgressHUD.showSuccess(withStatus: "削除しました")
         }
         
         //アラート表示
@@ -395,6 +404,12 @@ class TalkViewController: JSQMessagesViewController{
         speechToText?.stop()
     }
     
+    //退室時に音声認識をOFFにする
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        speechStop()
+    }
+    
 }
 
 extension TalkViewController: SpeechDelegate {
@@ -403,15 +418,27 @@ extension TalkViewController: SpeechDelegate {
         //自動投稿
         if text != ""{
             
-            inputToolbar.contentView.textView.text = text
+            //inputToolbar.contentView.textView.text = text
             //Firebaseに登録
-            /* let post1 = ["from": senderId!, "name": senderDisplayName, "text":text] as [String : Any]
+            let post1 = ["from": senderId!, "name": senderDisplayName, "text":text] as [String : Any]
              let post1Ref = ref.childByAutoId()
              post1Ref.setValue(post1)
-             self.finishSendingMessage(animated: true)*/
+             self.finishSendingMessage(animated: true)
         }else{
             return
         }
         
+    }
+}
+
+//セーフエリアの設定
+extension JSQMessagesInputToolbar {
+    override open func didMoveToWindow() {
+        super.didMoveToWindow()
+        guard let window = window else { return }
+        if #available(iOS 11.0, *) {
+            let anchor = window.safeAreaLayoutGuide.bottomAnchor
+            bottomAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: anchor, multiplier: 1.0).isActive = true
+        }
     }
 }

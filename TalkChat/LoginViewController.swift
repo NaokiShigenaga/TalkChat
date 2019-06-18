@@ -48,8 +48,11 @@ class LoginViewController: UIViewController {
         if let address = mailAddressTextField.text, let password = passwordTextField.text {
             
             //アドレスとパスワード名のいずれかでも入力されていない時は何もしない
-            if address.isEmpty || password.isEmpty {
-                SVProgressHUD.showError(withStatus: "必要項目を入力して下さい")
+            if address.isEmpty {
+                SVProgressHUD.showError(withStatus: "メールアドレスを入力して下さい")
+                return
+            }else if password.isEmpty {
+                SVProgressHUD.showError(withStatus: "パスワードを入力して下さい")
                 return
             }
             
@@ -62,6 +65,7 @@ class LoginViewController: UIViewController {
                     SVProgressHUD.showError(withStatus: "サインインに失敗しました。")
                     return
                 }
+                SVProgressHUD.showSuccess(withStatus: "ログインに成功しました。")
                 print("DEBUG_PRINT: ログインに成功しました。")
                 
                 //HUDを消す
@@ -84,9 +88,17 @@ class LoginViewController: UIViewController {
         if let address = mailAddressTextField.text, let password = passwordTextField.text, let displayName = displayNameTextField.text {
             
             //アドレスとパスワードと表示名のいずれかでも入力されていない時は何もしない
-            if address.isEmpty || password.isEmpty || displayName.isEmpty {
-                print("DEBUG_PRINT: 何かが空文字です。")
-                SVProgressHUD.showError(withStatus: "必要項目を入力して下さい")
+            if address.isEmpty {
+                print("DEBUG_PRINT: アドレスが空文字です。")
+                SVProgressHUD.showError(withStatus: "メールアドレスが空です。")
+                return
+            }else if password.isEmpty{
+                print("DEBUG_PRINT: パスワードが空文字です。")
+                SVProgressHUD.showError(withStatus: "パスワードが空です。")
+                return
+            }else if displayName.isEmpty {
+                print("DEBUG_PRINT: 名前が空文字です。")
+                SVProgressHUD.showError(withStatus: "名前が空です。")
                 return
             }
             
@@ -98,9 +110,10 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     //エラーがあったら原因をprintして、returnすることで以降の処理を実行せずに処理を終了する
                     print("DEBUG_PRINT: " + error.localizedDescription)
-                    SVProgressHUD.showError(withStatus: "ユーザー作成に失敗しました。")
+                    SVProgressHUD.showError(withStatus: "ユーザー作成に失敗しました。\n\(error.localizedDescription)")
                     return
                 }
+                SVProgressHUD.showSuccess(withStatus: "ユーザー作成に成功しました。")
                 print("DEBUG_PRINT: ユーザー作成に成功しました。")
                 
                 //表示名を設定する
@@ -115,15 +128,13 @@ class LoginViewController: UIViewController {
                             SVProgressHUD.showError(withStatus: "表示名の設定に失敗しました。")
                             return
                         }
+                        SVProgressHUD.showSuccess(withStatus: "\(user.displayName!)の設定に成功しました。")
                         print("DEBUG_PRINT: [displayName = \(user.displayName!)]の設定に成功しました。")
                         
                         //HUDを消す
                         SVProgressHUD.dismiss()
                         
-//                        //画面を閉じてホーム画面へ遷移
-//                        let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-//                        self.present(ViewController!, animated: true, completion: nil)
-                        
+                        //画面を閉じてホーム画面へ遷移
                         let slideMenuController = self.slideMenuController()
                         let navigationController = slideMenuController!.mainViewController as! UINavigationController
                         let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home")
