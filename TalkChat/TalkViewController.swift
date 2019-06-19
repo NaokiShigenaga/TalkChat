@@ -50,7 +50,18 @@ class TalkViewController: JSQMessagesViewController{
     var offbutton: UIButton!
     
     
+    //UserDefaults データ保存(RoomID)
+    var roomIdData:String = ""
+    
+    // UserDefaults のインスタンス
+    let userDefaults = UserDefaults.standard
+
+    
     func setupFirebase() {
+        
+        // デフォルト値
+        userDefaults.register(defaults: ["DataStore": ""])
+        
         // DatabaseReferenceのインスタンス化
         if RoomId != "" {
             ref = Database.database().reference().child("Talk").child(RoomId)
@@ -169,12 +180,6 @@ class TalkViewController: JSQMessagesViewController{
         
         //OQコード用のメニューバー
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "QR招待", style: .plain, target: self, action: #selector(showQRCode))
-        
-        //        //音声認識SWボタン(ON)
-        //        onbutton =  UIButton(type: .custom)
-        //        onbutton.setImage(UIImage(named:"mike0"), for: .normal)
-        //        //UIButton(type: .infoDark)
-        //        inputToolbar!.contentView!.leftBarButtonItem = onbutton
         
         //音声認識SWボタン(OFF)
         offbutton =  UIButton(type: .custom)
@@ -407,11 +412,12 @@ class TalkViewController: JSQMessagesViewController{
     //退室時に音声認識をOFFにする
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        speechStop()
+        speechToText?.stop()
     }
     
 }
 
+//音声データの投稿
 extension TalkViewController: SpeechDelegate {
     func speechEnd(text: String) {
         print("音声結果：\(text)")

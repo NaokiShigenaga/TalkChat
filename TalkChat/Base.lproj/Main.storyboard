@@ -238,6 +238,39 @@
             </objects>
             <point key="canvasLocation" x="1556" y="859.52023988005999"/>
         </scene>
+        <!--Browse View Controller-->
+        <scene sceneID="T72-ZF-ZF2">
+            <objects>
+                <viewController storyboardIdentifier="Browse" id="rAc-wK-8Aw" customClass="BrowseViewController" customModule="TalkChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ydd-82-njn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJ9-Y1-Nev">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IJ9-Y1-Nev" firstAttribute="top" secondItem="WgC-0l-DMT" secondAttribute="top" id="9C6-PF-eT7"/>
+                            <constraint firstItem="IJ9-Y1-Nev" firstAttribute="leading" secondItem="WgC-0l-DMT" secondAttribute="leading" id="Abd-1c-U6k"/>
+                            <constraint firstItem="WgC-0l-DMT" firstAttribute="bottom" secondItem="IJ9-Y1-Nev" secondAttribute="bottom" id="eux-Bf-bLk"/>
+                            <constraint firstItem="WgC-0l-DMT" firstAttribute="trailing" secondItem="IJ9-Y1-Nev" secondAttribute="trailing" id="pAt-Jd-Lz9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WgC-0l-DMT"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="IJ9-Y1-Nev" id="E2E-Sd-SI6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VyN-6q-en6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2231" y="859"/>
+        </scene>
         <!--Talk View Controller-->
         <scene sceneID="OEc-z6-MlL">
             <objects>

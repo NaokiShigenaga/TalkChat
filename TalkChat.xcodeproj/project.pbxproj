@@ -13,6 +13,7 @@
 		00294A46229534A900F73ADF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00294A44229534A900F73ADF /* Main.storyboard */; };
 		00294A48229534AA00F73ADF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00294A47229534AA00F73ADF /* Assets.xcassets */; };
 		00294A4B229534AA00F73ADF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00294A49229534AA00F73ADF /* LaunchScreen.storyboard */; };
+		002F4EFD22B9BAA3009D4DCA /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F4EFC22B9BAA3009D4DCA /* BrowseViewController.swift */; };
 		003824F82295361D0013116A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003824F72295361D0013116A /* LoginViewController.swift */; };
 		003824FC229536F80013116A /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003824FB229536F80013116A /* TalkViewController.swift */; };
 		003824FE2295376E0013116A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003824FD2295376E0013116A /* MenuViewController.swift */; };
@@ -32,6 +33,7 @@
 		00294A47229534AA00F73ADF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00294A4A229534AA00F73ADF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00294A4C229534AA00F73ADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		002F4EFC22B9BAA3009D4DCA /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		003824F72295361D0013116A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		003824FB229536F80013116A /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		003824FD2295376E0013116A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				0038250522953FD00013116A /* GoogleService-Info.plist */,
 				00259D17229F84960007DCF6 /* QrViewController.swift */,
 				004D256922A8F4B400667D9E /* SpeechToText.swift */,
+				002F4EFC22B9BAA3009D4DCA /* BrowseViewController.swift */,
 			);
 			path = TalkChat;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				003824FE2295376E0013116A /* MenuViewController.swift in Sources */,
 				00294A43229534A900F73ADF /* ViewController.swift in Sources */,
 				004D256A22A8F4B400667D9E /* SpeechToText.swift in Sources */,
+				002F4EFD22B9BAA3009D4DCA /* BrowseViewController.swift in Sources */,
 				00259D18229F84960007DCF6 /* QrViewController.swift in Sources */,
 				00294A41229534A900F73ADF /* AppDelegate.swift in Sources */,
 				003825042295384F0013116A /* SettingViewController.swift in Sources */,
