@@ -13,18 +13,17 @@ import FirebaseAuth
 class BrowseViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
-    
-    
+
     //ルームID
-    //var RoomId:String  = "-LgBsmK1LHOTpSA_YieC"
-    var RoomId:String = ""
+    //var roomId:String  = "-LgBsmK1LHOTpSA_YieC"
+    //var roomId:String!
+    var roomId: String! = ""
     
     // データベースへの参照を定義
     var ref: DatabaseReference!
     
     // メッセージ内容に関するプロパティ
     var snapshotKeys: [String]?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,48 +36,44 @@ class BrowseViewController: UIViewController {
         style.lineSpacing = 70
         let attributes = [NSAttributedString.Key.paragraphStyle : style]
         textView!.attributedText = NSAttributedString(string: textView!.text,
-                                                      attributes: attributes)
+                                                    attributes: attributes)
         
-        // DatabaseReferenceのインスタンス化
-        //ref = Database.database().reference().child("Talk").child(RoomId)
-        ref = Database.database().reference().child("Talk").child("-LhhLMvoWxqgNQTuVQrK")
+//        //前のビューから値を受け取る
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        roomId = appDelegate.roomid
+//        print("確認用ID：\(roomId)")
+//
         
-        print("ルームID：\(ref)")
-        
-        snapshotKeys = []
-        
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if let roomId = appDelegate.roomid {
+            print("確認用ID：\(roomId)")
         
         
-        
-        // 最新のデータが追加されるたびに最新データを取得する
-        ref.observe(DataEventType.childAdded, with: { (snapshot) -> Void in
-            let snapshotValue = snapshot.value as! NSDictionary
-            if let text = snapshotValue["text"] as! String?,
-                let sender = snapshotValue["from"] as! String?,
-                let name = snapshotValue["name"] as! String? {
-                print("テキスト：\(self.textView.text)")
-                print("名前：\(name)")
-                print("コメント：\(text)")
-                if self.textView.text != nil && !self.textView.text!.isEmpty {
-                    self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
-                } else {
-                    self.textView.text = "\(name) : \(text)"
-                }
-            }
+            // DatabaseReferenceのインスタンス化
+            ref = Database.database().reference().child("Talk").child(roomId)
             
-        })
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+            print("ルームアイディー：\(roomId)")
+            
+            snapshotKeys = []
+            
+            // 最新のデータが追加されるたびに最新データを取得する
+            ref.observe(DataEventType.childAdded, with: { (snapshot) -> Void in
+                let snapshotValue = snapshot.value as! NSDictionary
+                if let text = snapshotValue["text"] as? String,
+                    let name = snapshotValue["name"] as? String {
+                    print("テキスト：\(self.textView.text)")
+                    print("名前：\(name)")
+                    print("コメント：\(text)")
+                    if self.textView.text != nil && !self.textView.text!.isEmpty {
+                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
+                    } else {
+                        self.textView.text = "\(name) : \(text)"
+                    }
+                }
+                
+            })
+
+        }
         
     }
     
@@ -86,6 +81,5 @@ class BrowseViewController: UIViewController {
     @objc func close() {
         self.dismiss(animated: true, completion: nil)
     }
-    
     
 }

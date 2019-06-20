@@ -42,45 +42,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //row=0が選択されたとき（閲覧モード）
         if indexPath.section == 0 && indexPath.row == 0 {
-//            // ログイン画面を表示する
-//            let slideMenuController = self.slideMenuController()
-//            let navigationController = slideMenuController!.mainViewController as! UINavigationController
-//            let BrowseViewController = self.storyboard?.instantiateViewController(withIdentifier: "Browse")
-//            navigationController.setViewControllers([BrowseViewController!], animated: true)
-            
-            
-            
-            
-            
-            
-            
-            
-//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//            let popupView: BrowseViewController = storyBoard.instantiateViewController(withIdentifier: "Browse") as! BrowseViewController
-//            popupView.modalPresentationStyle = .overFullScreen
-//            popupView.modalTransitionStyle = .crossDissolve
-//
-//            self.present(popupView, animated: false, completion: nil)
-            
-            
-           
-            
-            
-            
-            // 次のViewControllerのインスタンスを作成
+       // 次のViewControllerのインスタンスを作成
             //let modalVC = BrowseViewController()
             let modalVC = storyboard?.instantiateViewController(withIdentifier: "Browse") as! BrowseViewController
-            
             // ViewControllerをrootに。
             let nav = UINavigationController(rootViewController: modalVC)
-            
             // オープン
             self.present(nav, animated: true, completion: nil)
-            
-            
-            
-            
+
             print("「閲覧モード」が押されました")
             //メニューバーを閉じる
             closeLeft()

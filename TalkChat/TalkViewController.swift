@@ -409,10 +409,23 @@ class TalkViewController: JSQMessagesViewController{
         speechToText?.stop()
     }
     
-    //退室時に音声認識をOFFにする
+    //メニューバーのアクション処理
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //退室時に音声認識を止める
         speechToText?.stop()
+        
+        //BrowseViewControllerへルームIDを渡す
+        goToNextPage()
+    }
+    
+    //BrowseViewControllerへルームIDを渡す
+    func goToNextPage(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.roomid = ref.key!
+        let nextVC = self.storyboard?.instantiateViewController(withIdentifier:"Browse")
+        present(nextVC!,animated:false,completion: nil)
+        print("遷移先用ID\(appDelegate.roomid!)")
     }
     
 }
