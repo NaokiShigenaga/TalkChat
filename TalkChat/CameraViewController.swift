@@ -11,13 +11,13 @@ import AVFoundation
 import SlideMenuControllerSwift
 
 class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-
+    
     //カメラやマイクの入出力を管理するオブジェクトを生成
     let session = AVCaptureSession()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //カメラやマイクのデバイスオブジェクトを生成
         let devices:[AVCaptureDevice] = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices
         
@@ -83,28 +83,39 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             if metadata.stringValue == nil {
                 continue
             }
-
+            
             //ここでQRコードから取得したデータで処理を行う
             //取得したデータは「metadata.stringValue」
-            guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Talk") as? TalkViewController else { return }
+            //guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Talk") as? TalkViewController else { return }
             
             //let dataID = metadata.stringValue!
             let urlID = metadata.stringValue!
-
+            
             //スキームURLからIDだけをの取得
             let dataID = urlID.replacingCharacters(in: urlID.range(of:"talk-chat://localhost:8080/roomid?")!, with: "")
-        
-            viewController.RoomId = dataID
-            print("カメラViewでのID：\(dataID)")
-            present(UINavigationController(rootViewController: viewController), animated: true)
-        
+            
+            //viewController.RoomId = dataID
+            //("カメラViewでのID：\(dataID)")
+            //present(UINavigationController(rootViewController: viewController), animated: true)
+            
+            if let slideMenuController = UIApplication.shared.keyWindow?.rootViewController as? SlideMenuController {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let navigationController = slideMenuController.mainViewController as! UINavigationController
+                if let mainVC = storyboard.instantiateViewController(withIdentifier: "Talk") as? TalkViewController{
+                    mainVC.RoomId = dataID
+                    navigationController.setViewControllers([mainVC], animated: true)
+                    UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+            
+            
         }
     }
     
     //ナビゲーションバー （閉じる）
     @objc func close() {
         //全てのモーダルを閉じる
-        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     //ナビゲーションバー （戻る）
@@ -112,5 +123,5 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         //今開いてる画面を閉じて1つ前の画面に戻る
         self.dismiss(animated: true, completion: nil)
     }
-
+    
 }

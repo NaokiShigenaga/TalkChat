@@ -75,6 +75,10 @@ class TalkViewController: JSQMessagesViewController{
         
         print("ルームID：\(ref)")
         
+        //BrowseViewControllerへルームIDを渡す
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.roomid = ref.key!
+        
         snapshotKeys = []
         //room_id: uid
         // 最新25件のデータをデータベースから取得する
@@ -416,17 +420,17 @@ class TalkViewController: JSQMessagesViewController{
         speechToText?.stop()
         
         //BrowseViewControllerへルームIDを渡す
-        goToNextPage()
+        //goToNextPage()
     }
     
-    //BrowseViewControllerへルームIDを渡す
-    func goToNextPage(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.roomid = ref.key!
-        let nextVC = self.storyboard?.instantiateViewController(withIdentifier:"Browse")
-        present(nextVC!,animated:false,completion: nil)
-        print("遷移先用ID\(appDelegate.roomid!)")
-    }
+//    //BrowseViewControllerへルームIDを渡す
+//    func goToNextPage(){
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        appDelegate.roomid = ref.key!
+//        let nextVC = self.storyboard?.instantiateViewController(withIdentifier:"Browse")
+//        present(nextVC!,animated:false,completion: nil)
+//        print("遷移先用ID\(appDelegate.roomid!)")
+//    }
     
 }
 

@@ -88,7 +88,7 @@ class QrViewController: UIViewController {
         if let userName = userName {
             UserName = userName.displayName!
         }
-        let shareText = "\(UserName)さんからの招待が来ています。\n※Safariで開いてください。\n"
+        let shareText = "\(UserName)さんからの招待が来ています。\n"
         let shareWebsite = NSURL(string: "talk-chat://localhost:8080/roomid?" + passedString!)!
         //let shareImage = UIImage(named: "")!
         
