@@ -38,11 +38,17 @@ class BrowseViewController: UIViewController {
         textView!.attributedText = NSAttributedString(string: textView!.text,
                                                     attributes: attributes)
         
-//        //前のビューから値を受け取る
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        roomId = appDelegate.roomid
-//        print("確認用ID：\(roomId)")
-//
+        
+        
+        //TextViewの編集を不可にする
+        self.textView.isEditable = false
+        self.textView.isSelectable = false
+        
+        
+        
+        
+        
+        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let roomId = appDelegate.roomid {
@@ -69,8 +75,41 @@ class BrowseViewController: UIViewController {
                     } else {
                         self.textView.text = "\(name) : \(text)"
                     }
+                    //self.textView.simple_scrollToBottom()
+                    let range = NSMakeRange(self.textView.text.count - 1, 0)
+                    self.textView.scrollRangeToVisible(range)
                 }
                 
+            })
+            
+            ref.queryLimited(toLast: 25).observe(DataEventType.childChanged, with: { (snapshot) -> Void in
+                //編集
+                
+                guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
+                // 差し替えるため一度削除する
+                self.snapshotKeys?.remove(at: index)
+                //self.messages?.remove(at: index)
+                
+                let snapshotValue = snapshot.value as! NSDictionary
+                if let text = snapshotValue["text"] as? String,
+                    let name = snapshotValue["name"] as? String {
+                    print("テキスト：\(self.textView.text)")
+                    print("名前：\(name)")
+                    print("コメント：\(text)")
+                    if self.textView.text != nil && !self.textView.text!.isEmpty {
+                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
+                    } else {
+                        self.textView.text = "\(name) : \(text)"
+                    }
+                }
+            })
+            
+            
+            ref.queryLimited(toLast: 25).observe(DataEventType.childRemoved, with: { (snapshot) -> Void in
+                //削除
+                guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
+                
+                self.snapshotKeys?.remove(at: index)
             })
 
         }
@@ -83,3 +122,11 @@ class BrowseViewController: UIViewController {
     }
     
 }
+
+//extension UITextView {
+//    func simple_scrollToBottom() {
+//        let textCount: Int = text.count
+//        guard textCount >= 1 else { return }
+//        scrollRangeToVisible(NSMakeRange(textCount - 1, 1))
+//    }
+//}

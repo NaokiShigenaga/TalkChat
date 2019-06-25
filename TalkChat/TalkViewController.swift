@@ -44,7 +44,7 @@ class TalkViewController: JSQMessagesViewController{
     
     
     var speechToText:SpeechToText!
-    
+    var isSpeechStop = false
     
     var onbutton: UIButton!
     var offbutton: UIButton!
@@ -55,7 +55,7 @@ class TalkViewController: JSQMessagesViewController{
     
     // UserDefaults のインスタンス
     let userDefaults = UserDefaults.standard
-
+    
     
     func setupFirebase() {
         
@@ -131,7 +131,7 @@ class TalkViewController: JSQMessagesViewController{
             
             //リロード
             self.finishSendingMessage()
-
+            
         })
     }
     
@@ -323,13 +323,13 @@ class TalkViewController: JSQMessagesViewController{
                 SVProgressHUD.showError(withStatus: "発言内容が空です")
                 return
             }else{
-            
-            let post1 = ["from": message!.senderId, "name": message!.senderDisplayName, "text": text] as [String: String]
-            
-            let post1Ref = ref.child(key)
-            post1Ref.updateChildValues(post1)
-            self.finishSendingMessage(animated: true)
-            SVProgressHUD.showSuccess(withStatus: "発言内容を更新しました")
+                
+                let post1 = ["from": message!.senderId, "name": message!.senderDisplayName, "text": text] as [String: String]
+                
+                let post1Ref = ref.child(key)
+                post1Ref.updateChildValues(post1)
+                self.finishSendingMessage(animated: true)
+                SVProgressHUD.showSuccess(withStatus: "発言内容を更新しました")
             }
         }
         
@@ -408,9 +408,12 @@ class TalkViewController: JSQMessagesViewController{
         speechToText.start()
     }
     
+    
     //音声認識呼び出し処理（STOP）
     func speechStop() {
         speechToText?.stop()
+        speechToText = nil
+        isSpeechStop = true
     }
     
     //メニューバーのアクション処理
@@ -423,14 +426,14 @@ class TalkViewController: JSQMessagesViewController{
         //goToNextPage()
     }
     
-//    //BrowseViewControllerへルームIDを渡す
-//    func goToNextPage(){
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.roomid = ref.key!
-//        let nextVC = self.storyboard?.instantiateViewController(withIdentifier:"Browse")
-//        present(nextVC!,animated:false,completion: nil)
-//        print("遷移先用ID\(appDelegate.roomid!)")
-//    }
+    //    //BrowseViewControllerへルームIDを渡す
+    //    func goToNextPage(){
+    //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    //        appDelegate.roomid = ref.key!
+    //        let nextVC = self.storyboard?.instantiateViewController(withIdentifier:"Browse")
+    //        present(nextVC!,animated:false,completion: nil)
+    //        print("遷移先用ID\(appDelegate.roomid!)")
+    //    }
     
 }
 
@@ -438,15 +441,22 @@ class TalkViewController: JSQMessagesViewController{
 extension TalkViewController: SpeechDelegate {
     func speechEnd(text: String) {
         print("音声結果：\(text)")
+        
+        if !isSpeechStop {
+            speechToText = SpeechToText()
+            speechToText.delegate = self
+            speechToText.start()
+        }
+        
         //自動投稿
         if text != ""{
             
             //inputToolbar.contentView.textView.text = text
             //Firebaseに登録
             let post1 = ["from": senderId!, "name": senderDisplayName, "text":text] as [String : Any]
-             let post1Ref = ref.childByAutoId()
-             post1Ref.setValue(post1)
-             self.finishSendingMessage(animated: true)
+            let post1Ref = ref.childByAutoId()
+            post1Ref.setValue(post1)
+            self.finishSendingMessage(animated: true)
         }else{
             return
         }

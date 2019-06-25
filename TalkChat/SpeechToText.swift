@@ -74,9 +74,9 @@ class SpeechToText {
                 isFinal = result.isFinal
                 self.stop()
                 //self.restart()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-                    self.start()
-                })
+                /*DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                 self.start()
+                 })*/
             }
             
             if error != nil || isFinal {
@@ -85,15 +85,15 @@ class SpeechToText {
         }
     }
     
-//    private func restart() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-//            self.recognitionTask?.cancel()
-//            self.recognitionTask?.finish()
-//            self.stop()
-//            print("RESTART")
-//            self.start()
-//        })
-//    }
+    //    private func restart() {
+    //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+    //            self.recognitionTask?.cancel()
+    //            self.recognitionTask?.finish()
+    //            self.stop()
+    //            print("RESTART")
+    //            self.start()
+    //        })
+    //    }
     
     func stop(){
         if audioEngine.isRunning {
