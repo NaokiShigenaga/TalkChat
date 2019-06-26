@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import JSQMessagesViewController
 
-class BrowseViewController:UIViewController{
+class BrowseViewController:UIViewController {
     
     @IBOutlet weak var textView: UITextView!
 
@@ -25,7 +25,8 @@ class BrowseViewController:UIViewController{
     
     // メッセージ内容に関するプロパティ
     var snapshotKeys: [String]?
-    var messages: [JSQMessage]?
+    //var messages: [JSQMessage]?
+    var messages: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,15 +70,22 @@ class BrowseViewController:UIViewController{
                     print("テキスト：\(self.textView.text)")
                     print("名前：\(name)")
                     print("コメント：\(text)")
-                    if self.textView.text != nil && !self.textView.text!.isEmpty {
-                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
-                    } else {
-                        self.textView.text = "\(name) : \(text)"
-                    }
-                    let message = JSQMessage(senderId: sender, displayName: name, text: text)
+//                    if self.textView.text != nil && !self.textView.text!.isEmpty {
+//                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
+//                    } else {
+//                        self.textView.text = "\(name) : \(text)"
+//                    }
+                    //let message = JSQMessage(senderId: sender, displayName: name, text: text)
                     
-                    self.messages?.append(message!)
-                    self.snapshotKeys?.append(snapshot.key)
+//                    self.messages.append(message!)
+//                    self.snapshotKeys?.append(snapshot.key)
+                    
+                    self.messages.append("\(name) : \(text)")
+                    self.textView.text = self.messages.joined(separator: "\n")
+                    
+                    print("messagesの中身：\(self.messages)")
+                    
+                    print("self.messages.joinedの中身：\(self.messages)")
 
                     //スクロール設定
                     self.textView.down_scrollToBottom()
@@ -85,71 +93,43 @@ class BrowseViewController:UIViewController{
                 
             })
             
-//            ref.observe(DataEventType.childChanged, with: { (snapshot) -> Void in
-//                //更新
-//                guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
-//                //差し替えるため一度削除する
-//                self.snapshotKeys?.remove(at: index)
-//                self.messages?.remove(at: index)
-//
-//                let snapshotValue = snapshot.value as! NSDictionary
-//                if  let text = snapshotValue["text"] as? String,
-//                    let sender = snapshotValue["from"] as? String,
-//                    let name = snapshotValue["name"] as? String {
-//                    print("テキスト：\(self.textView.text)")
-//                    print("名前：\(name)")
-//                    print("コメント：\(text)")
-//                    if self.textView.text != nil && !self.textView.text!.isEmpty {
-//                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
-//                    } else {
-//                        self.textView.text = "\(name) : \(text)"
-//                    }
-//                    let message = JSQMessage(senderId: sender, displayName: name, text: text)
-//
-//                    self.messages?.append(message!)
-//                    self.snapshotKeys?.append(snapshot.key)
-//
-//
-//                    //スクロール設定
-//                    self.textView.down_scrollToBottom()
-//                }
-//            })
-            
-            
             ref.observe(DataEventType.childChanged, with: { (snapshot) -> Void in
-                //編集
+                //更新
                 guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
-                
-                // 差し替えるため一度削除する
+                //差し替えるため一度削除する
                 self.snapshotKeys?.remove(at: index)
-                self.messages?.remove(at: index)
-                
+                self.messages.remove(at: index)
+
                 let snapshotValue = snapshot.value as! NSDictionary
-                let text = snapshotValue["text"] as! String
-                let sender = snapshotValue["from"] as! String
-                let name = snapshotValue["name"] as! String
-                print(snapshot.value!)
-                let message = JSQMessage(senderId: sender, displayName: name, text: text)
-                // 削除したところに更新済みのデータを追加する
-                self.snapshotKeys?.insert(snapshot.key, at: index)
-                self.messages?.insert(message!, at: index)
-                
-                // collectionViewを再表示する
-                //self.finishSendingMessage()
-                //self.collectionView.reloadData()
+                if  let text = snapshotValue["text"] as? String,
+                    let sender = snapshotValue["from"] as? String,
+                    let name = snapshotValue["name"] as? String {
+                    print("テキスト：\(self.textView.text)")
+                    print("名前：\(name)")
+                    print("コメント：\(text)")
+                    if self.textView.text != nil && !self.textView.text!.isEmpty {
+                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
+                    } else {
+                        self.textView.text = "\(name) : \(text)"
+                    }
+                    //let message = JSQMessage(senderId: sender, displayName: name, text: text)
+
+                    self.messages.append("\(name) : \(text)")
+                    self.textView.text = self.messages.joined(separator: "\n")
+                    
+                    print("messagesの中身（更新後）：\(self.messages)")
+
+                    //スクロール設定
+                    self.textView.down_scrollToBottom()
+                }
             })
-            
-            
-            
-            
-            
-            
+     
             
             ref.observe(DataEventType.childRemoved, with: { (snapshot) -> Void in
                 //削除
                 guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
                 self.snapshotKeys?.remove(at: index)
-                self.messages?.remove(at: index)
+                self.messages.remove(at: index)
                 
                 //スクロール設定
                 self.textView.down_scrollToBottom()
