@@ -80,7 +80,7 @@ class TalkViewController: JSQMessagesViewController{
         appDelegate.roomid = ref.key!
         
         snapshotKeys = []
-        //room_id: uid
+
         // 最新25件のデータをデータベースから取得する
         // 最新のデータが追加されるたびに最新データを取得する
         ref.queryLimited(toLast: 25).observe(DataEventType.childAdded, with: { (snapshot) -> Void in
@@ -99,7 +99,6 @@ class TalkViewController: JSQMessagesViewController{
         ref.queryLimited(toLast: 25).observe(DataEventType.childChanged, with: { (snapshot) -> Void in
             //編集
             guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
-            
             
             // 差し替えるため一度削除する
             self.snapshotKeys?.remove(at: index)
@@ -176,7 +175,7 @@ class TalkViewController: JSQMessagesViewController{
         //NavigationBarが半透明かどうか
         navigationController?.navigationBar.isTranslucent = false
         //NavigationBarの色を変更します
-        navigationController?.navigationBar.barTintColor = UIColor(red: 129/255, green: 212/255, blue: 78/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 122/255, blue: 254/255, alpha: 1)
         //NavigationBarに乗っている部品の色を変更します
         navigationController?.navigationBar.tintColor = UIColor.white
         //バーの左側にボタンを配置します(ライブラリ特有)
@@ -421,19 +420,12 @@ class TalkViewController: JSQMessagesViewController{
         super.viewWillDisappear(animated)
         //退室時に音声認識を止める
         speechToText?.stop()
-        
-        //BrowseViewControllerへルームIDを渡す
-        //goToNextPage()
+        //音声認識SWボタン(OFF)
+        offbutton =  UIButton(type: .custom)
+        offbutton.setImage(UIImage(named:"mike02"), for: .normal)
+        //UIButton(type: .infoDark)
+        inputToolbar!.contentView!.leftBarButtonItem = offbutton
     }
-    
-    //    //BrowseViewControllerへルームIDを渡す
-    //    func goToNextPage(){
-    //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //        appDelegate.roomid = ref.key!
-    //        let nextVC = self.storyboard?.instantiateViewController(withIdentifier:"Browse")
-    //        present(nextVC!,animated:false,completion: nil)
-    //        print("遷移先用ID\(appDelegate.roomid!)")
-    //    }
     
 }
 
