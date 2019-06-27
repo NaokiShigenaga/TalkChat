@@ -65,63 +65,49 @@ class BrowseViewController:UIViewController {
             ref.observe(DataEventType.childAdded, with: { (snapshot) -> Void in
                 let snapshotValue = snapshot.value as! NSDictionary
                 if  let text = snapshotValue["text"] as? String,
-                    let sender = snapshotValue["from"] as? String,
                     let name = snapshotValue["name"] as? String {
                     print("テキスト：\(self.textView.text)")
                     print("名前：\(name)")
                     print("コメント：\(text)")
-//                    if self.textView.text != nil && !self.textView.text!.isEmpty {
-//                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
-//                    } else {
-//                        self.textView.text = "\(name) : \(text)"
-//                    }
-                    //let message = JSQMessage(senderId: sender, displayName: name, text: text)
                     
 //                    self.messages.append(message!)
-//                    self.snapshotKeys?.append(snapshot.key)
+                    self.snapshotKeys?.append(snapshot.key)
                     
                     self.messages.append("\(name) : \(text)")
                     self.textView.text = self.messages.joined(separator: "\n")
                     
                     print("messagesの中身：\(self.messages)")
-                    
                     print("self.messages.joinedの中身：\(self.messages)")
 
                     //スクロール設定
-                    self.textView.down_scrollToBottom()
+                    //self.textView.down_scrollToBottom()
                 }
-                
+                //スクロール設定
+                self.textView.down_scrollToBottom()
             })
             
             ref.observe(DataEventType.childChanged, with: { (snapshot) -> Void in
                 //更新
                 guard let index = self.snapshotKeys?.index(where: {$0 == snapshot.key}) else { return }
-                //差し替えるため一度削除する
-                self.snapshotKeys?.remove(at: index)
-                self.messages.remove(at: index)
 
                 let snapshotValue = snapshot.value as! NSDictionary
                 if  let text = snapshotValue["text"] as? String,
-                    let sender = snapshotValue["from"] as? String,
                     let name = snapshotValue["name"] as? String {
                     print("テキスト：\(self.textView.text)")
                     print("名前：\(name)")
                     print("コメント：\(text)")
-                    if self.textView.text != nil && !self.textView.text!.isEmpty {
-                        self.textView.text = "\(self.textView.text!)\n\(name) : \(text)"
-                    } else {
-                        self.textView.text = "\(name) : \(text)"
-                    }
-                    //let message = JSQMessage(senderId: sender, displayName: name, text: text)
-
-                    self.messages.append("\(name) : \(text)")
+                    
+                    self.messages[index] = "\(name) : \(text)"
+                   
                     self.textView.text = self.messages.joined(separator: "\n")
                     
                     print("messagesの中身（更新後）：\(self.messages)")
-
+                    
                     //スクロール設定
-                    self.textView.down_scrollToBottom()
+                    //self.textView.down_scrollToBottom()
                 }
+                //スクロール設定
+                self.textView.down_scrollToBottom()
             })
      
             
@@ -131,10 +117,11 @@ class BrowseViewController:UIViewController {
                 self.snapshotKeys?.remove(at: index)
                 self.messages.remove(at: index)
                 
+                self.textView.text = self.messages.joined(separator: "\n")
+                
                 //スクロール設定
                 self.textView.down_scrollToBottom()
             })
-            
 
         }
         
@@ -153,5 +140,7 @@ extension UITextView {
         let textCount: Int = text.count
         guard textCount >= 1 else { return }
         scrollRangeToVisible(NSMakeRange(textCount - 1, 1))
+        self.isScrollEnabled = false
+        self.isScrollEnabled = true
     }
 }

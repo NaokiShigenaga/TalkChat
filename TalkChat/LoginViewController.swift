@@ -22,9 +22,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var AccountButton: UIButton!
     
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet var baseView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //ログインボタンのカスタム
         LoginButton.backgroundColor = UIColor.lightGray
         LoginButton.layer.cornerRadius = 5.0
