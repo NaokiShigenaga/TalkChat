@@ -109,11 +109,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             alertController.addAction(action2)
             self.present(alertController, animated: true, completion: nil)
             
-            
-            
-            
-            
-            
             //メニューバーを閉じる
             closeLeft()
             

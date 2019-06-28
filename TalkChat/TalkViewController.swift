@@ -138,14 +138,11 @@ class TalkViewController: JSQMessagesViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
         // クリーンアップツールバーの設定
         inputToolbar!.contentView!.leftBarButtonItem = nil
         // 新しいメッセージを受信するたびに下にスクロールする
         automaticallyScrollsToMostRecentMessage = true
         
-        //self.canPerformAction(<#T##action: Selector##Selector#>, withSender: <#T##Any?#>)
-        //inputToolbar!.contentView!.textView.c
         // 自分のsenderId, senderDisplayNameを設定
         //ユーザID
         let userId = Auth.auth().currentUser
@@ -241,7 +238,7 @@ class TalkViewController: JSQMessagesViewController{
         self.finishSendingMessage(animated: true)
         
         //キーボードを閉じる
-        //self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     // アイテムごとに参照するメッセージデータを返す

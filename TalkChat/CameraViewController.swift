@@ -71,7 +71,6 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
     }
     
-    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
             //QRコードのデータかどうかの確認
@@ -92,7 +91,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             let urlID = metadata.stringValue!
             
             //スキームURLからIDだけをの取得
-            let dataID = urlID.replacingCharacters(in: urlID.range(of:"talk-chat://localhost:8080/roomid?")!, with: "")
+            let dataID = urlID.replacingCharacters(in: urlID.range(of:"eye-talk://localhost:8080/roomid?")!, with: "")
             
             //viewController.roomData = dataID
             //("カメラViewでのID：\(dataID)")
@@ -107,7 +106,6 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                     UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
                 }
             }
-            
             
         }
     }

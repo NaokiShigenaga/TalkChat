@@ -24,10 +24,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>jp.talk-chat.roomid</string>
+			<string>jp.eye-talk.roomid</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>talk-chat</string>
+				<string>eye-talk</string>
 			</array>
 		</dict>
 	</array>

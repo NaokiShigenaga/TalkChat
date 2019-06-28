@@ -16,8 +16,6 @@ class BrowseViewController:UIViewController {
     @IBOutlet weak var textView: UITextView!
 
     //ルームID
-    //var roomId:String  = "-LgBsmK1LHOTpSA_YieC"
-    //var roomId:String!
     var roomId: String! = ""
     
     // データベースへの参照を定義
