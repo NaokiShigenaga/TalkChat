@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let navigationController = slideMenuController.mainViewController as! UINavigationController
             if let mainVC = storyboard.instantiateViewController(withIdentifier: "Talk") as? TalkViewController{
-                mainVC.RoomId = url.query!
+                mainVC.roomData = url.query!
                 navigationController.setViewControllers([mainVC], animated: true)
             }
         }

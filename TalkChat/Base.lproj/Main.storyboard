@@ -303,82 +303,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CV4-A9-Fmy">
-                                <rect key="frame" x="10" y="229" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="oCM-Wn-K8m"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IY0-8D-cBl">
-                                <rect key="frame" x="10" y="269" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="C2e-4N-7JB"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSt-eY-Vzn">
-                                <rect key="frame" x="10" y="409" width="300" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="fSH-sW-yx6"/>
-                                    <constraint firstAttribute="width" constant="300" id="sUh-DU-tRU"/>
-                                </constraints>
-                                <state key="normal" title="アカウント作成">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="handleCreateAccountButton:" destination="ZPf-Kh-d5l" eventType="touchUpInside" id="GF2-SV-zhS"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eye Talk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2x3-OZ-Lf6">
-                                <rect key="frame" x="82.5" y="165" width="155" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pac-8o-naF">
-                                <rect key="frame" x="10" y="349" width="300" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="lef-rG-QkM"/>
-                                    <constraint firstAttribute="width" constant="300" id="uXN-jn-0gj"/>
-                                </constraints>
-                                <state key="normal" title="ログイン">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="handleCreateAccountButton:" destination="ZPf-Kh-d5l" eventType="touchUpInside" id="C5g-r2-7oO"/>
-                                    <action selector="handleLoginButton:" destination="ZPf-Kh-d5l" eventType="touchUpInside" id="qdE-wO-hDi"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="アカウント作成時は表示名を入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ek-WF-SZC">
-                                <rect key="frame" x="10" y="309" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="NKU-wh-HKl"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FGa-A1-H3U">
+                                <rect key="frame" x="10" y="141.5" width="300" height="285.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eye Talk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2x3-OZ-Lf6">
+                                        <rect key="frame" x="84.5" y="0.0" width="131.5" height="45.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CV4-A9-Fmy">
+                                        <rect key="frame" x="0.0" y="55.5" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="oCM-Wn-K8m"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IY0-8D-cBl">
+                                        <rect key="frame" x="0.0" y="95.5" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="C2e-4N-7JB"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="アカウント作成時は表示名を入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ek-WF-SZC">
+                                        <rect key="frame" x="0.0" y="135.5" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="NKU-wh-HKl"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pac-8o-naF">
+                                        <rect key="frame" x="0.0" y="175.5" width="300" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="lef-rG-QkM"/>
+                                            <constraint firstAttribute="width" constant="300" id="uXN-jn-0gj"/>
+                                        </constraints>
+                                        <state key="normal" title="ログイン">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleCreateAccountButton:" destination="ZPf-Kh-d5l" eventType="touchUpInside" id="C5g-r2-7oO"/>
+                                            <action selector="handleLoginButton:" destination="ZPf-Kh-d5l" eventType="touchUpInside" id="qdE-wO-hDi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSt-eY-Vzn">
+                                        <rect key="frame" x="0.0" y="235.5" width="300" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="fSH-sW-yx6"/>
+                                            <constraint firstAttribute="width" constant="300" id="sUh-DU-tRU"/>
+                                        </constraints>
+                                        <state key="normal" title="アカウント作成">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleCreateAccountButton:" destination="ZPf-Kh-d5l" eventType="touchUpInside" id="GF2-SV-zhS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2x3-OZ-Lf6" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="7ab-cP-7aZ"/>
-                            <constraint firstItem="pac-8o-naF" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="AZS-Uj-2bK"/>
-                            <constraint firstItem="1ek-WF-SZC" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="DNn-qY-aGk"/>
-                            <constraint firstItem="gSt-eY-Vzn" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="MjN-Cl-Xsz"/>
-                            <constraint firstItem="IY0-8D-cBl" firstAttribute="top" secondItem="CV4-A9-Fmy" secondAttribute="bottom" constant="10" id="Ocb-NA-hax"/>
-                            <constraint firstItem="CV4-A9-Fmy" firstAttribute="top" secondItem="2x3-OZ-Lf6" secondAttribute="bottom" constant="10" id="RVy-Al-a3j"/>
-                            <constraint firstItem="pac-8o-naF" firstAttribute="top" secondItem="1ek-WF-SZC" secondAttribute="bottom" constant="10" id="S9e-4L-emV"/>
-                            <constraint firstItem="IY0-8D-cBl" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="SfY-x4-tBV"/>
-                            <constraint firstItem="CV4-A9-Fmy" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="Y89-dL-vuH"/>
-                            <constraint firstItem="gSt-eY-Vzn" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="afW-61-bor"/>
-                            <constraint firstItem="IY0-8D-cBl" firstAttribute="centerY" secondItem="Bjb-cG-PlG" secondAttribute="centerY" id="clv-Ak-HKx"/>
-                            <constraint firstItem="gSt-eY-Vzn" firstAttribute="top" secondItem="pac-8o-naF" secondAttribute="bottom" constant="10" id="qBi-SN-2be"/>
-                            <constraint firstItem="1ek-WF-SZC" firstAttribute="top" secondItem="IY0-8D-cBl" secondAttribute="bottom" constant="10" id="xO6-Co-3bv"/>
+                            <constraint firstItem="FGa-A1-H3U" firstAttribute="centerY" secondItem="Bjb-cG-PlG" secondAttribute="centerY" id="2rm-Th-r3T"/>
+                            <constraint firstItem="FGa-A1-H3U" firstAttribute="centerX" secondItem="Bjb-cG-PlG" secondAttribute="centerX" id="5KG-e1-q9M"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="a6N-FA-T6a"/>
                     </view>

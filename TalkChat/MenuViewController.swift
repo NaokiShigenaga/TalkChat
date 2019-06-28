@@ -15,7 +15,7 @@ import SlideMenuControllerSwift
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var passedString: String!
-    var RoomId: String!
+    var roomData: String!
     
     var TalkViewController:TalkViewController!
     weak var delegate: MenuDelegate?

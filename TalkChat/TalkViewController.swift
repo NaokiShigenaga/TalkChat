@@ -25,8 +25,8 @@ class TalkViewController: JSQMessagesViewController{
     }
     
     //ルームID
-    //var RoomId:String  = "-LgBsmK1LHOTpSA_YieC"
-    var RoomId:String = ""
+    //var roomData:String  = "-LgBsmK1LHOTpSA_YieC"
+    var roomData:String = ""
     
     // データベースへの参照を定義
     var ref: DatabaseReference!
@@ -50,7 +50,7 @@ class TalkViewController: JSQMessagesViewController{
     var offbutton: UIButton!
     
     
-    //UserDefaults データ保存(RoomID)
+    //UserDefaults データ保存(roomData)
     var roomIdData:String = ""
     
     // UserDefaults のインスタンス
@@ -63,15 +63,15 @@ class TalkViewController: JSQMessagesViewController{
         userDefaults.register(defaults: ["DataStore": ""])
         
         // DatabaseReferenceのインスタンス化
-        if RoomId != "" {
-            ref = Database.database().reference().child("Talk").child(RoomId)
-            print("確認よう：\(RoomId)")
+        if roomData != "" {
+            ref = Database.database().reference().child("Talk").child(roomData)
+            print("確認よう：\(roomData)")
         }else{
             ref = Database.database().reference().child("Talk").childByAutoId()
             print("確認よう：取得できてないよ！")
         }
         //ref = Database.database().reference().child("Talk").childByAutoId()
-        //ref = Database.database().reference().child("Talk").child(RoomId)
+        //ref = Database.database().reference().child("Talk").child(roomData)
         
         print("ルームID：\(ref)")
         
@@ -195,7 +195,7 @@ class TalkViewController: JSQMessagesViewController{
     //QRコード呼び出し
     @objc func showQRCode() {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "Qr") as? QrViewController else { return }
-        //viewController.passedString = RoomId
+        //viewController.passedString = roomData
         viewController.passedString = ref.key!
         print("ルーーーーーーーーーーーーーーームID：\(ref.key!)")
         present(UINavigationController(rootViewController: viewController), animated: true)

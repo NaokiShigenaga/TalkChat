@@ -94,7 +94,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             //スキームURLからIDだけをの取得
             let dataID = urlID.replacingCharacters(in: urlID.range(of:"talk-chat://localhost:8080/roomid?")!, with: "")
             
-            //viewController.RoomId = dataID
+            //viewController.roomData = dataID
             //("カメラViewでのID：\(dataID)")
             //present(UINavigationController(rootViewController: viewController), animated: true)
             
@@ -102,7 +102,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let navigationController = slideMenuController.mainViewController as! UINavigationController
                 if let mainVC = storyboard.instantiateViewController(withIdentifier: "Talk") as? TalkViewController{
-                    mainVC.RoomId = dataID
+                    mainVC.roomData = dataID
                     navigationController.setViewControllers([mainVC], animated: true)
                     UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
                 }
